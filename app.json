@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/test/test",
+    "pages/dictation/dictation",
+    "pages/my/my",
+    "pages/select_book_for_learn/select_book_for_learn",
+    "pages/select_chapter/select_chapter",
+    "pages/learn/learn"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F5F5F5",
+    "navigationBarTitleText": "LexiMinds"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#328EEB",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_filled.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "iconPath": "images/test.png",
+        "selectedIconPath": "images/test_filled.png",
+        "text": "单词词测"
+      },
+      {
+        "pagePath": "pages/dictation/dictation",
+        "iconPath": "images/sound.png",
+        "selectedIconPath": "images/sound_filled.png",
+        "text": "单词听写"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_filled.png",
+        "text": "个人中心"
+      }
+    ]
+  }
+}

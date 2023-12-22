@@ -1,0 +1,4 @@
+<!--pages/select_book_for_learn/select_book_for_learn.wxml-->
+<block wx:for="{{bookList}}" wx:key="id">
+  <van-card centered title="{{item.bookname}}" thumb="{{serverRoot + item.avatarURL}}" bindtap="navigateToSelectChapter" data-bookid="{{item.id}}" data-purpose="learn"></van-card>
+</block>

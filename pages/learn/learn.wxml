@@ -1,0 +1,50 @@
+<!--pages/learn/learn.wxml-->
+<view class="container">
+  <view class="progress">
+    <text>{{index + 1}}/{{wordList.length}}</text>
+  </view>
+  <view class="english">
+    <text>{{wordList[index].english}}</text>
+  </view>
+  <view class="vocal" wx:if="{{wordList[index].vocal != null}}">
+    <text>{{wordList[index].vocal}}</text>
+    <image class="icon" src="/images/sound.png" wx:if="{{wordList[index].vocal != null}}" bindtap="play_audio"></image>
+  </view>
+  <view class="wordPicture" wx:if="{{wordList[index].image_url != null}}">
+    <image src="{{serverRoot + wordList[index].image_url}}" wx:if="{{wordList[index].image_url[0]}}=='/'" mode="aspectFill"></image>
+    <image src="{{wordList[index].image_url}}" wx:else></image>
+  </view>
+  
+  <view class="translationBox">
+    <view class="label">
+      <text>释义</text>
+    </view>
+    <view class="translation">
+      <text>{{wordList[index].translation}}</text>
+    </view>
+  </view>
+  <view class="examplesBox" wx:if="{{wordList[index].examples != null}}">
+    <view class="label">
+      <text>示例</text>
+    </view>
+    <view class="examples">
+      <text>{{wordList[index].examples}}</text>
+    </view>
+  </view>
+  <view class="memoryBox" wx:if="{{wordList[index].fast_memory != null}}">
+    <view class="label">
+      <text>速记</text>
+    </view>
+    <view class="memory">
+      <text>{{wordList[index].fast_memory}}</text>
+    </view>
+  </view>
+  <view class="margin">
+    <image></image>
+  </view>
+</view>
+<view class="control">
+    <button class="prev" bindtap="prev" wx:if="{{index>0}}">{{"<"}}</button>
+    <button class="next" bindtap="next" wx:if="{{index < wordList.length - 1}}">{{">"}}</button>
+    <button class="finish" bindtap="finish" wx:else>{{"√"}}</button>
+</view>

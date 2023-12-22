@@ -1,0 +1,89 @@
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainpage_topcard
+{
+  background-color: whitesmoke;
+  padding-bottom: 1cm;
+}
+
+.progress{
+  height: 400rpx;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2cm;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.progress_statistics{
+  height: 80%;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.progress_statistics_today
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress_statistics_total
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress_statistics .learning_progress_prompt
+{
+  color: #BBBBBB;
+  font-size: small;
+}
+
+.learning_progress_prompt
+{
+  color: #BBBBBB;
+  font-size: small;
+}
+
+.progress_statistics text
+{
+  text-align: center;
+  color: white;
+  margin: 20rpx;
+}
+
+.progress progress
+{
+  width: 100%;
+  align-self: center;
+}
+
+.btn_start_new_words{
+  background-color: blue;
+  color: white;
+  font-size: 12px;
+  font-weight: 200;
+  margin-top: 1cm;
+  border-radius: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.container xx-calendar{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 0.5cm;
+  background-color: whitesmoke;
+}

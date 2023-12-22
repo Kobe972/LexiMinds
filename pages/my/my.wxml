@@ -1,0 +1,20 @@
+<!--pages/my/my.wxml-->
+<view class = 'container'>
+  <view class='my_topcard'>
+    <view class = 'avartar'>
+      <image src="/images/default_avatar.png" style="width:1.5cm; height:1.5cm; border-radius: 50%;"></image>
+    </view>
+    <view class = 'information'>
+      <text>暂无</text>
+      <text>暂无</text>
+    </view>
+    <view class = 'settings'>
+      <van-button icon="setting-o" type="default" round="true" size="small" color="blue"/>
+    </view>
+  </view>
+  <view class="listItem" wx:for="{{list}}" wx:for-item='row' wx:key="row{{index}}">
+    <image class="icon" src="{{row.icon}}"></image>
+    <text>{{row.text}}</text>
+    <image class="small" src="/images/arrow.png"></image>
+  </view>
+</view>

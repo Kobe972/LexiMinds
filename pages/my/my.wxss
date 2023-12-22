@@ -1,0 +1,70 @@
+/* pages/my/my.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+}
+
+.my_topcard
+{
+  background-color:blue;
+  height: 3cm;
+  display: flex;
+  flex-direction: row;
+}
+
+.information{
+  align-content: center;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.information text{
+  color: white;
+  font-size: small;
+  margin-bottom: 20rpx;
+}
+
+.avartar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.settings{
+  margin-top: 20rpx;
+}
+
+.listItem{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  border: 1rpx solid silver;
+}
+
+.listItem image{
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 15rpx;
+}
+
+.listItem .small{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 15rpx;
+}
+
+.listItem text{
+  font-size: 30rpx;
+  flex-grow: 1;
+}

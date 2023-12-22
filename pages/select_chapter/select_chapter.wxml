@@ -1,0 +1,7 @@
+<!--pages/select_chapter/select_chapter.wxml-->
+<view class="container">
+  <view class="listItem" wx:for="{{chapterList}}" wx:key="row{{index}}" data-chapterId="{{item.id}}" bindtap="navigateToNextStep">
+    <text>{{item.name}}</text>
+    <image class="small" src="/images/arrow.png"></image>
+  </view>
+</view>

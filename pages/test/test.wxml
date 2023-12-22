@@ -1,0 +1,4 @@
+<!--pages/test/test.wxml-->
+<block wx:for="{{bookList}}" wx:key="id">
+  <van-card centered title="{{item.bookname}}" thumb="{{serverRoot+item.avatarURL}}"></van-card>
+</block>
