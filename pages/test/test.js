@@ -86,5 +86,14 @@ Page({
         console.error('Failed to get book list', err);
       },
     });
+  },
+
+  navigateToSelectChapter: function (event) {
+    const bookId = event.currentTarget.dataset.bookid;
+    const purpose = event.currentTarget.dataset.purpose;
+
+    wx.navigateTo({
+      url: `/pages/select_chapter/select_chapter?bookId=${bookId}&purpose=${purpose}`,
+    });
   }
 })

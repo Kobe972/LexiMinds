@@ -1,0 +1,22 @@
+<!--pages/dictation/test.wxml-->
+<view class="container">
+  <view class="progress">
+    <text>{{index + 1}}/{{problemList.length}}</text>
+  </view>
+  <view class="vocal">
+    <image class="icon" src="/images/sound.png" bindtap="play_audio"></image>
+  </view>
+  <view class="choices">
+    <radio-group bindchange="set_answer">
+      <radio class="radio" value="0" checked="{{problemList[index].answer == 0}}">A. {{problemList[index].choice1}}</radio>
+      <radio class="radio" value="1" checked="{{problemList[index].answer == 1}}">B. {{problemList[index].choice2}}</radio>
+      <radio class="radio" value="2" checked="{{problemList[index].answer == 2}}">C. {{problemList[index].choice3}}</radio>
+      <radio class="radio" value="3" checked="{{problemList[index].answer == 3}}">D. {{problemList[index].choice4}}</radio>
+    </radio-group>
+  </view>
+</view>
+<view class="control">
+    <button class="prev" bindtap="prev" wx:if="{{index>0}}">{{"<"}}</button>
+    <button class="next" bindtap="next" wx:if="{{index < problemList.length - 1}}">{{">"}}</button>
+    <button class="finish" bindtap="finish" wx:else>{{"√"}}</button>
+</view>

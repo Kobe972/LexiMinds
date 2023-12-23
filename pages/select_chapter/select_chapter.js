@@ -94,5 +94,17 @@ Page({
         url: `/pages/learn/learn?chapterId=${chapterId}`,
       });
     }
+    else if(this.data.purpose == 'dictation')
+    {
+      wx.navigateTo({
+        url: `/pages/dictation/test?chapterId=${chapterId}`,
+      });
+    }
+    else if(this.data.purpose == 'test')
+    {
+      wx.navigateTo({
+        url: `/pages/test/start_test?chapterId=${chapterId}`,
+      });
+    }
   }
 })

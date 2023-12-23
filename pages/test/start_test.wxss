@@ -1,0 +1,64 @@
+/* pages/test/start_test.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  padding-top: 0.2cm;
+}
+.progress{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.progress text{
+  font-size: 30rpx;
+}
+.english{
+  margin-bottom: 0.2cm;
+}
+.english text{
+  font-size: 50rpx;
+  font-weight: 1000;
+}
+.vocal{
+  margin-bottom: 0.5cm;
+  display: flex;
+  flex-direction: row;
+}
+.vocal image{
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 0.3cm;
+}
+.control{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0.5cm;
+  justify-content: center;
+  width: 100%;
+}
+.control button{
+  width: fit-content;
+  border-radius: 50%;
+  background-color: deepskyblue;
+  color: whitesmoke;
+}
+.prev{
+  margin-left: 0.5cm;
+}
+.next{
+  margin-right: 0.5cm;
+}
+.finish{
+  margin-right: 0.5cm;
+}
+
+radio-group{
+  display: flex;
+  flex-direction: column;
+}

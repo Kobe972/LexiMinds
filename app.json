@@ -7,7 +7,9 @@
     "pages/my/my",
     "pages/select_book_for_learn/select_book_for_learn",
     "pages/select_chapter/select_chapter",
-    "pages/learn/learn"
+    "pages/learn/learn",
+    "pages/dictation/test",
+    "pages/test/start_test"
   ],
   "window": {
     "navigationBarTextStyle": "black",

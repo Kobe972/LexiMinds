@@ -1,0 +1,25 @@
+<!--pages/test/start_test.wxml-->
+<view class="container">
+  <view class="progress">
+    <text>{{index + 1}}/{{problemList.length}}</text>
+  </view>
+  <view class="english">
+    <text>{{problemList[index].english}}</text>
+  </view>
+  <view class="vocal">
+    <image class="icon" src="/images/sound.png" bindtap="play_audio"></image>
+  </view>
+  <van-cell-group>
+    <van-field
+      value="{{ problemList[index].answer }}"
+      placeholder="输入翻译"
+      border="{{ false }}"
+      bind:change="onChangeInputField"
+    />
+  </van-cell-group>
+</view>
+<view class="control">
+    <button class="prev" bindtap="prev" wx:if="{{index>0}}">{{"<"}}</button>
+    <button class="next" bindtap="next" wx:if="{{index < problemList.length - 1}}">{{">"}}</button>
+    <button class="finish" bindtap="finish" wx:else>{{"√"}}</button>
+</view>
