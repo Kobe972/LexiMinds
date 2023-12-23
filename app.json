@@ -9,7 +9,9 @@
     "pages/select_chapter/select_chapter",
     "pages/learn/learn",
     "pages/dictation/test",
-    "pages/test/start_test"
+    "pages/test/start_test",
+    "pages/settings/settings",
+    "pages/settings/information/information"
   ],
   "window": {
     "navigationBarTextStyle": "black",

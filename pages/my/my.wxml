@@ -9,7 +9,7 @@
       <text>暂无</text>
     </view>
     <view class = 'settings'>
-      <van-button icon="setting-o" type="default" round="true" size="small" color="blue"/>
+      <van-button icon="setting-o" type="default" round="true" size="small" color="blue" bindtap="navigateToSettings"/>
     </view>
   </view>
   <view class="listItem" wx:for="{{list}}" wx:for-item='row' wx:key="row{{index}}">

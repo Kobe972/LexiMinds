@@ -1,0 +1,22 @@
+<!--pages/settings/information/information.wxml-->
+<view class="container">
+  <text class="label">头像</text>
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar" src = "{{avatarUrl}}" mode="aspectFit"></image>
+  </button>
+  <text class="label">昵称</text>
+  <view class="row_flex_view">
+    <input type="nickname" class="nickName" placeholder="请输入昵称" bind:change="getNickName" value="{{nickName}}"/>
+  </view>
+  <text class="label">手机号</text>
+  <view class="phone">
+    <view class="number">
+      <input type="digit" class="digitBox" placeholder="请输入手机号" bind:change="getPhoneNumber" maxlength="11"/>
+      <button type="default" class="sendSMSCode">发送验证码</button>
+    </view>
+    <view class="valcode">
+      <input type="digit" class="digitBox" placeholder="请输入验证码" bind:change="getPhoneNumber" maxlength="6"/>
+    </view>
+  </view>
+  <button type="primary" class="save">保存</button>
+</view>

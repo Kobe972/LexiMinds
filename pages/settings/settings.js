@@ -1,4 +1,4 @@
-// pages/my/my.js
+// pages/settings/settings.js
 Page({
 
   /**
@@ -6,9 +6,8 @@ Page({
    */
   data: {
     list: [
-      {text:'学习记录', icon:'/images/document.png'},
-      {text:'测评记录', icon:'/images/document_edit.png'},
-      {text:'错题集', icon:'/images/notice.png'}
+      {text:'个人资料', 'next_page': '/pages/settings/information/information'},
+      {text:'关于我们'}
     ]
   },
 
@@ -68,10 +67,10 @@ Page({
 
   },
 
-  navigateToSettings: function()
-  {
+  navigateToNextPage: function (event) {
+    const next_page = event.currentTarget.dataset.next_page;
     wx.navigateTo({
-      url: '/pages/settings/settings',
+      url: next_page,
     });
   }
 })

@@ -1,0 +1,55 @@
+/* pages/settings/information/information.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  padding-top: 0.2cm;
+}
+.label{
+  font-weight: 600;
+  margin-bottom: 0.3cm;
+}
+.avatar-wrapper{
+  width: 3cm;
+  height: 3cm;
+  margin-bottom: 0.5cm;
+}
+
+.avatar{
+  max-height: 3cm;
+  max-width: 100%;
+}
+
+input{
+  background-color: whitesmoke;
+  height: 1cm;
+  margin-bottom: 0.5cm;
+  font-size: 35rpx;
+  flex-grow: 1;
+}
+
+.number{
+  display: flex;
+  flex-direction: row;
+}
+
+.row_flex_view{
+  display: flex;
+  flex-direction: row;
+}
+
+.sendSMSCode{
+  justify-content: center;
+  height: fit-content;
+  font-size: 35rpx;
+  margin-left: 10rpx;
+}
+
+.save{
+  width: 50%;
+  height: fit-content;
+  font-size: 35rpx;
+}

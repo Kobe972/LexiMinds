@@ -1,15 +1,11 @@
-// pages/my/my.js
+// pages/settings/information/information.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      {text:'学习记录', icon:'/images/document.png'},
-      {text:'测评记录', icon:'/images/document_edit.png'},
-      {text:'错题集', icon:'/images/notice.png'}
-    ]
+
   },
 
   /**
@@ -68,10 +64,15 @@ Page({
 
   },
 
-  navigateToSettings: function()
-  {
-    wx.navigateTo({
-      url: '/pages/settings/settings',
-    });
+  onChooseAvatar: function(e){
+    this.setData({avatarUrl: e.detail.avatarUrl});
+  },
+
+  getNickName: function(e){
+    this.setData({nickName: e.detail.value});
+  },
+
+  getPhoneNumber: function(e){
+    this.setData({phoneNumber: e.detail.value});
   }
 })
