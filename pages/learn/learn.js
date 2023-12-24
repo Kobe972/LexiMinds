@@ -16,6 +16,11 @@ Page({
   onLoad(options) {
     this.setData({index: 0, chapterId: options.chapterId});
     this.getWordList();
+    wx.request({
+      url: `${config.serverRoot}/setClockIn`,
+      method: "POST",
+      data: {uid: wx.getStorageSync('user').openid}
+    });
   },
 
   /**

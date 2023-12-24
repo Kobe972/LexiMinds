@@ -17,5 +17,5 @@
     </view>
     <button class="btn_start_new_words" bindtap="handleStartNewWords">开始背单词</button>
   </view>
-  <xx-calendar use_date_arr="{{use_date_arr}}"></xx-calendar>
+  <xx-calendar use_date_arr="{{use_date_arr}}" wx:if="{{loaded}}"></xx-calendar>
 </view>
