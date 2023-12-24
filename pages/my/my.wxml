@@ -2,11 +2,11 @@
 <view class = 'container'>
   <view class='my_topcard'>
     <view class = 'avartar'>
-      <image src="/images/default_avatar.png" style="width:1.5cm; height:1.5cm; border-radius: 50%;"></image>
+      <image src="{{avatarUrl}}" style="width:1.5cm; height:1.5cm; border-radius: 50%;"></image>
     </view>
     <view class = 'information'>
-      <text>暂无</text>
-      <text>暂无</text>
+      <text>{{nickName}}</text>
+      <text>{{phoneNumber}}</text>
     </view>
     <view class = 'settings'>
       <van-button icon="setting-o" type="default" round="true" size="small" color="blue" bindtap="navigateToSettings"/>

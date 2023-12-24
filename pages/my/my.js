@@ -1,4 +1,5 @@
 // pages/my/my.js
+const config = require('../../utils/config.js');
 Page({
 
   /**
@@ -9,14 +10,34 @@ Page({
       {text:'学习记录', icon:'/images/document.png'},
       {text:'测评记录', icon:'/images/document_edit.png'},
       {text:'错题集', icon:'/images/notice.png'}
-    ]
+    ],
+    nickName: "",
+    phoneNumber: "",
+    avatarUrl: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let that = this;
+    wx.request({
+      url: `${config.serverRoot}/getUserInfo?openid=${wx.getStorageSync('user').openid}`,
+      success: function(res){
+        if(res.data.length > 0)
+        {
+          let avatarUrl = res.data[0].avatarUrl;
+          if(avatarUrl[0] == '/') avatarUrl = config.serverRoot + avatarUrl;
+          let nickName = res.data[0].nickName;
+          if(nickName == "") nickName = "暂无";
+          let phoneNumber = res.data[0].phone;
+          if(phoneNumber == "") phoneNumber = "暂无";
+          that.setData({avatarUrl: avatarUrl});
+          that.setData({nickName: nickName});
+          that.setData({phoneNumber: phoneNumber});
+        }
+      }
+    });
   },
 
   /**
@@ -30,7 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    
   },
 
   /**

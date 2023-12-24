@@ -1,4 +1,5 @@
 <!--pages/settings/information/information.wxml-->
+<van-toast id="van-toast" />
 <view class="container">
   <text class="label">头像</text>
   <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
@@ -11,12 +12,12 @@
   <text class="label">手机号</text>
   <view class="phone">
     <view class="number">
-      <input type="digit" class="digitBox" placeholder="请输入手机号" bind:change="getPhoneNumber" maxlength="11"/>
-      <button type="default" class="sendSMSCode">发送验证码</button>
+      <input type="digit" class="digitBox" placeholder="请输入手机号" bind:change="getPhoneNumber" maxlength="11" value="{{phoneNumber}}"/>
+      <button type="default" class="sendSMSCode" disabled="{{phoneNumber.length < 11 || SMSButtonDisabled}}" bindtap="sendSMSCode">{{SMSButtonText}}</button>
     </view>
     <view class="valcode">
-      <input type="digit" class="digitBox" placeholder="请输入验证码" bind:change="getPhoneNumber" maxlength="6"/>
+      <input type="digit" class="digitBox" placeholder="请输入验证码" bind:change="getSMSCode" maxlength="6"/>
     </view>
   </view>
-  <button type="primary" class="save">保存</button>
+  <button type="primary" class="save" bindtap="onSave">保存</button>
 </view>
