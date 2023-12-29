@@ -11,7 +11,8 @@
     "pages/dictation/test",
     "pages/test/start_test",
     "pages/settings/settings",
-    "pages/settings/information/information"
+    "pages/settings/information/information",
+    "pages/test_results/test_results"
   ],
   "window": {
     "navigationBarTextStyle": "black",

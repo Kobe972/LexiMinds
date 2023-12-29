@@ -1,0 +1,46 @@
+<!--pages/test_results/test_results.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="date_picker">
+      <text>时间范围：</text>
+      <picker mode="date" header-text="选择时间"  value="{{date}}" bindchange="bindStartDateChange">
+        <text class="input_box_like" wx:if="{{submission_time_start != ''}}">{{ submission_time_start }}</text>
+        <text class="input_box_like" wx:else>开始时间</text>
+      </picker>
+      <text>~</text>
+      <picker mode="date" header-text="选择时间"  value="{{date}}" bindchange="bindEndDateChange">
+        <text class="input_box_like" wx:if="{{submission_time_end != ''}}">{{ submission_time_end }}</text>
+        <text class="input_box_like" wx:else>结束时间</text>
+      </picker>
+    </view>
+    <view class="table">
+      <view class="header">
+          <view class="th">
+            <text>考试类型</text>
+          </view>
+          <view class="th">
+            <text>正确率</text>
+          </view>
+          <view class="th">
+            <text>提交时间</text>
+          </view>
+      </view>
+      <van-divider customStyle="border-color: #1989fa; margin-top: 0; margin-bottom:0"></van-divider>
+      <scroll-view scroll-y class="body">
+        <view class="tr" wx:for="{{resultList}}" wx:key="row{{index}}" data-chapterId="{{item.id}}">
+          <view class="td">
+            <text>{{item.type}}</text>
+          </view>
+          <view class="td">
+            <text>{{item.accuracy}}</text>
+          </view>
+          <view class="td">
+            <text>{{item.submission_time}}</text>
+          </view>
+        </view>
+        <text class="center_small">没有更多了</text>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+

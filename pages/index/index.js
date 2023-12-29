@@ -25,7 +25,7 @@ Page({
     });
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getClockInThisDay?uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getClockIn?uid=${wx.getStorageSync('user').openid}`,
       method: "GET",
       success: function(res){
         let date_arr = [];

@@ -138,12 +138,12 @@ Page({
         for(let i = 0; i < res.data.length; i++)
         {
           correct += (res.data[i].score > 0.85);
-          score += res.data[i].score > 0.85;
+          score += res.data[i].score;
         }
         wx.hideLoading();
         wx.showModal({
           title: '测试结果',
-          content: '正确数：' + correct + '/' + res.data.length + '\n正确率：'  + (correct / res.data.length*100).toFixed(1) + "%" + '\n语言准确度：'  + (score / res.data.length).toFixed(1),
+          content: '正确数：' + correct + '/' + res.data.length + '\n正确率：'  + (correct / res.data.length*100).toFixed(1) + "%" + '\n语言准确度：'  + (score / res.data.length).toFixed(2),
           showCancel:false,
           complete: (res) => {
             wx.navigateBack();

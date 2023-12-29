@@ -74,12 +74,13 @@ Page({
 
   getChoices: function () {
     var that = this;
+    wx.showLoading({  title: '正在生成题目',})
 
     wx.request({
       url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
-
+        wx.hideLoading();
         // Update the data with the retrieved book list
         that.setData({
           problemList: res.data,
@@ -88,7 +89,14 @@ Page({
       },
       fail: function (err) {
         // Handle the failure
-        console.error('Failed to get chapter list', err);
+        wx.hideLoading();
+        wx.navigateBack();
+        wx.showToast({
+          title: '题目生成失败',
+          icon: 'error',
+          duration: 2000,
+          mask: true
+        });
       },
     });
   },
@@ -121,17 +129,32 @@ Page({
 
   finish: function()
   {
-    let correct = 0
+    let correct = 0;
+    let success = true;
     for(let i = 0; i < this.data.problemList.length; i++)
     {
       if(this.data.problemList[i].truth == this.data.problemList[i].answer) correct++;
     }
+    wx.request({
+      url: `${config.serverRoot}/postDictationResult`,
+      method: 'POST',
+      data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid},
+      fail: function(err){
+        success = false;
+        wx.showToast({
+          title: '结果上传失败',
+          icon: 'error',
+          duration: 2000,
+          mask: true
+        });
+      }
+    });
     wx.showModal({
       title: '测试结果',
       content: '正确数：' + correct + '/' + this.data.problemList.length + '\n正确率：'  + (correct / this.data.problemList.length*100).toFixed(1) + "%",
       showCancel:false,
       complete: (res) => {
-        wx.navigateBack();
+        if(success) wx.navigateBack();
       }
     })
   },

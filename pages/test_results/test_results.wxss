@@ -1,0 +1,109 @@
+/* pages/test_results/test_results.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  padding-top: 0.2cm;
+}
+
+.date_picker{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-bottom: 0.2cm;
+  justify-content: center;
+}
+
+picker{
+  height: fit-content;
+  width: fit-content;
+}
+
+.input_box_like{
+  background-color:whitesmoke;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  font-size: 30rpx;
+  border-radius: 5rpx;
+}
+
+.date_picker text{
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card{
+  width: 100%;
+  background-color: #ffcc11;
+  border-radius: 20rpx;
+  padding: 10rpx;
+}
+
+.table{
+  background-color: #f5e3a1;
+  border-radius: 20rpx;
+  padding: 30rpx;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30rpx;
+}
+
+.th{
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.th text{
+  text-align: center;
+  font-size: 30rpx;
+  color:deepskyblue;
+}
+
+.tr{
+  display: flex;
+  flex-direction: row;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-top: 1rpx solid silver;
+}
+
+.td{
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.td text{
+  text-align: center;
+  font-size: 25rpx;
+}
+
+.body{
+  flex-grow: 1;
+  height: 10cm;
+}
+
+.center_small{
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: darkgrey;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}

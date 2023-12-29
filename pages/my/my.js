@@ -8,11 +8,11 @@ Page({
   data: {
     list: [
       {text:'学习记录', icon:'/images/document.png'},
-      {text:'测评记录', icon:'/images/document_edit.png'},
+      {text:'测评记录', icon:'/images/document_edit.png', action: 'navigateToTestResults'},
       {text:'错题集', icon:'/images/notice.png'}
     ],
-    nickName: "",
-    phoneNumber: "",
+    nickName: "暂无",
+    phoneNumber: "暂无",
     avatarUrl: ""
   },
 
@@ -94,5 +94,12 @@ Page({
     wx.navigateTo({
       url: '/pages/settings/settings',
     });
-  }
+  },
+
+  navigateToTestResults: function()
+  {
+    wx.navigateTo({
+      url: '/pages/test_results/test_results',
+    });
+  },
 })

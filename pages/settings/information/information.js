@@ -25,9 +25,9 @@ Page({
       url: `${config.serverRoot}/getUserInfo?openid=${wx.getStorageSync('user').openid}`,
       success: function(res){
         let avatarUrl = res.data[0].avatarUrl;
+        that.setData({avatarUrl_converted: avatarUrl});
         if(avatarUrl[0] == '/') avatarUrl = config.serverRoot + avatarUrl;
         that.setData({avatarUrl: avatarUrl});
-        that.setData({avatarUrl_converted: avatarUrl});
         that.setData({nickName: res.data[0].nickName});
         that.setData({phoneNumber: res.data[0].phone});
       }
