@@ -9,7 +9,7 @@ Page({
     list: [
       {text:'学习记录', icon:'/images/document.png'},
       {text:'测评记录', icon:'/images/document_edit.png', action: 'navigateToTestResults'},
-      {text:'错题集', icon:'/images/notice.png'}
+      {text:'错题集', icon:'/images/notice.png', action: 'navigateToWrongRecords'}
     ],
     nickName: "暂无",
     phoneNumber: "暂无",
@@ -102,4 +102,11 @@ Page({
       url: '/pages/test_results/test_results',
     });
   },
+
+  navigateToWrongRecords: function()
+  {
+    wx.navigateTo({
+      url: '/pages/wrong_records/wrong_records',
+    });
+  }
 })

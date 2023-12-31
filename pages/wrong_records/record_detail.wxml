@@ -1,0 +1,47 @@
+<!--pages/wrong_records/record_detail.wxml-->
+<view class="container">
+  <view class="english">
+    <text>{{recordDetail.english}}</text>
+  </view>
+  <view class="vocal" wx:if="{{recordDetail.vocal != null}}">
+    <text>{{recordDetail.vocal}}</text>
+    <image class="icon" src="/images/sound.png" wx:if="{{recordDetail.vocal != null}}" bindtap="play_audio"></image>
+  </view>
+  <view class="wordPicture" wx:if="{{recordDetail.image_url != null}}">
+    <image src="{{serverRoot + recordDetail.image_url}}" wx:if="{{recordDetail.image_url[0]}}=='/'" mode="aspectFill"></image>
+    <image src="{{recordDetail.image_url}}" mode="aspectFill" wx:else></image>
+  </view>
+  
+  <view class="translationBox">
+    <view class="label">
+      <text>释义</text>
+    </view>
+    <view class="translation">
+      <text>{{recordDetail.translation}}</text>
+    </view>
+  </view>
+  <view class="examplesBox" wx:if="{{recordDetail.examples != null}}">
+    <view class="label">
+      <text>示例</text>
+    </view>
+    <view class="examples">
+      <text>{{recordDetail.examples}}</text>
+    </view>
+  </view>
+  <view class="memoryBox" wx:if="{{recordDetail.fast_memory != null}}">
+    <view class="label">
+      <text>速记</text>
+    </view>
+    <view class="memory">
+      <text>{{recordDetail.fast_memory}}</text>
+    </view>
+  </view>
+  <view class="recordBox">
+    <view class="label">
+      <text>来源</text>
+    </view>
+    <view class="record">
+      <text>{{book_name+", "+chapter_name+"\n"}}</text>
+    </view>
+  </view>
+</view>

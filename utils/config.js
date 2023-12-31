@@ -1,4 +1,4 @@
-const serverRoot = 'http://127.0.0.1';  // Replace with your server's actual IP or hostname
+const serverRoot = 'http://60.205.179.213';  // Replace with your server's actual IP or hostname
 
 module.exports = {
   serverRoot: serverRoot

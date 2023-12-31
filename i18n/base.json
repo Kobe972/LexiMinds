@@ -1,0 +1,11 @@
+{
+	"ios": {
+		"name": "LexiMinds"
+	},
+	"android": {
+		"name": "LexiMinds"
+	},
+	"common": {
+		"name": "LexiMinds"
+	}
+}

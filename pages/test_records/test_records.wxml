@@ -1,0 +1,20 @@
+<!--pages/test_records/test_records.wxml-->
+<view class="container">
+  <van-cell-group title="错题记录 ({{wrongRecordItems.length}})" wx:if="{{wrongRecordItems.length > 0}}">
+    <view wx:for="{{wrongRecordItems}}" wx:key="row{{index}}" >
+      <van-cell data-recordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+
+  <van-cell-group title="正确题目 ({{correctRecordItems.length}})" wx:if="{{correctRecordItems.length > 0}}">
+    <view wx:for="{{correctRecordItems}}" wx:key="row{{index}}" >
+      <van-cell data-recordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+
+  <van-cell-group title="未评分 ({{not_rated.length}})" wx:if="{{not_rated.length > 0}}">
+    <view wx:for="{{not_rated}}" wx:key="row{{index}}" >
+      <van-cell data-recordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+</view>

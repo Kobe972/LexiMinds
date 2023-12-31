@@ -81,7 +81,9 @@ Page({
         {
           if(resultList[i].type == 'dictation') resultList[i].type = '听写';
           else if(resultList[i].type == 'test') resultList[i].type = '词测';
-          resultList[i].accuracy = resultList[i].accuracy.toFixed(2);
+          if(resultList[i].accuracy == -1) resultList[i].accuracy = '排队中';
+          else if(resultList[i].accuracy == -0.5) resultList[i].accuracy = '评分中';
+          else resultList[i].accuracy = resultList[i].accuracy.toFixed(2);
         }
         that.setData({resultList: resultList});
       }
@@ -89,7 +91,6 @@ Page({
   },
 
   bindStartDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       submission_time_start: e.detail.value
     });
@@ -97,10 +98,16 @@ Page({
   },
 
   bindEndDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       submission_time_end: e.detail.value
     });
     this.updateResultData();
+  },
+
+  navigateToRecords: function(e){
+    const resultId = e.currentTarget.dataset.resultid;
+    wx.navigateTo({
+      url: `/pages/test_records/test_records?resultId=${resultId}`,
+    });
   }
 })

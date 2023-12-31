@@ -72,9 +72,27 @@ Page({
 
   },
 
+  shuffleSelf: function(array, size) {
+      var index = -1,
+          length = array.length,
+          lastIndex = length - 1;
+
+      size = size === undefined ? length : size;
+      while (++index < size) {
+          // var rand = baseRandom(index, lastIndex),
+          var rand = index + Math.floor( Math.random() * (lastIndex - index + 1));
+          let value = array[rand];
+
+          array[rand] = array[index];
+
+          array[index] = value;
+      }
+      array.length = size;
+      return array;
+  },
+
   getChoices: function () {
     var that = this;
-
     wx.request({
       url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}`, // Replace with your actual endpoint
       method: 'GET',
@@ -82,7 +100,7 @@ Page({
 
         // Update the data with the retrieved book list
         that.setData({
-          problemList: res.data,
+          problemList: that.shuffleSelf(res.data, res.data.length),
         });
         that.play_audio();
       },
@@ -127,23 +145,16 @@ Page({
   {
     if(this.data.problemList[this.data.index].answer == null) this.data.problemList[this.data.index].answer = '';
     let that = this;
-    wx.showLoading({  title: '正在获取分数',})
+    wx.showLoading({title: "正在上传数据"});
     wx.request({
-      url: `${config.serverRoot}/getTranslationScore`,
-      data: this.data.problemList,
+      url: `${config.serverRoot}/postTranslationResult`,
+      data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid},
       method: 'POST',
       success: function (res) {
-        let correct = 0;
-        let score = 0;
-        for(let i = 0; i < res.data.length; i++)
-        {
-          correct += (res.data[i].score > 0.85);
-          score += res.data[i].score;
-        }
         wx.hideLoading();
         wx.showModal({
-          title: '测试结果',
-          content: '正确数：' + correct + '/' + res.data.length + '\n正确率：'  + (correct / res.data.length*100).toFixed(1) + "%" + '\n语言准确度：'  + (score / res.data.length).toFixed(2),
+          title: '测试完成',
+          content: '已发送至服务器，请到个人中心->测评记录看测试结果',
           showCancel:false,
           complete: (res) => {
             wx.navigateBack();
@@ -152,8 +163,13 @@ Page({
       },
       fail: function (err) {
         // Handle the failure
-        console.error('Failed to get chapter list', err);
-        wx.navigateBack();
+        wx.hideLoading();
+        wx.showToast({
+          title: '数据上传失败',
+          icon: 'error',
+          duration: 2000,
+          mask: true
+        });
       },
     });
     

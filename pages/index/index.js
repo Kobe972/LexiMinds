@@ -7,6 +7,7 @@ Page({
     loaded: false
   },
   onLoad(options) {
+    let that = this;
     wx.login({
       //成功放回
       success:(res)=>{
@@ -15,28 +16,27 @@ Page({
           url: config.serverRoot+'/getOpenId?appid=wx8d575aef47f48989&secret=4a5102802c1f7a700824ae29adfeed0e&js_code=' + res.code,
           success:(res)=>{
             var obj = {};
-              obj.openid = res.data.openid;
-              obj.session_key = res.data.session_key;
+            obj.openid = res.data.openid;
+            obj.session_key = res.data.session_key;
             //存储openid
-              wx.setStorageSync('user', obj);
+            wx.setStorageSync('user', obj);
+            wx.request({
+              url: `${config.serverRoot}/getClockIn?uid=${wx.getStorageSync('user').openid}`,
+              method: "GET",
+              success: function(res){
+                let date_arr = [];
+                console.log(res.data);
+                for(var i = 0; i < res.data.length; i++)
+                {
+                  date_arr.push(res.data[i].day);
+                }
+                that.setData({use_date_arr: date_arr});
+                console.log(that.data.use_date_arr);
+                that.setData({loaded: true});
+              }
+            });
           }
         });
-      }
-    });
-    let that = this;
-    wx.request({
-      url: `${config.serverRoot}/getClockIn?uid=${wx.getStorageSync('user').openid}`,
-      method: "GET",
-      success: function(res){
-        let date_arr = [];
-        console.log(res.data);
-        for(var i = 0; i < res.data.length; i++)
-        {
-          date_arr.push(res.data[i].day);
-        }
-        that.setData({use_date_arr: date_arr});
-        console.log(that.data.use_date_arr);
-        that.setData({loaded: true});
       }
     });
   },
