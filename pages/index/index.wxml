@@ -4,16 +4,16 @@
     <view class = 'progress'>
       <view class = 'progress_statistics'>
         <view class = 'progress_statistics_today'>
-          <text>-</text>
+          <text>{{statistics.learnedWordsCountToday}}</text>
           <text class = 'learning_progress_prompt'>今日学/词</text>
         </view>
         <view class = 'progress_statistics_total'>
-          <text>-</text>
+          <text>{{statistics.learnedWordsCountTotal}}</text>
           <text class = 'learning_progress_prompt'>共计学/词</text>
         </view>
       </view>
-      <progress percent="0" activeColor = "white" backgroundColor="#BBBBBB" stroke-width="4"></progress>
-      <text class="learning_progress_prompt">学习进度0/0</text>
+      <progress percent="{{statistics.learnedWordsCountInTodayLastLearnedBook/statistics.wordsCountInTodayLastLearnedBook*100}}" activeColor = "white" backgroundColor="#BBBBBB" stroke-width="4"></progress>
+      <text class="learning_progress_prompt">学习进度{{statistics.learnedWordsCountInTodayLastLearnedBook}}/{{statistics.wordsCountInTodayLastLearnedBook}}</text>
     </view>
     <button class="btn_start_new_words" bindtap="handleStartNewWords">开始背单词</button>
   </view>

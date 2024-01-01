@@ -4,7 +4,8 @@ const config = require('../../utils/config.js');
 Page({
   data: {
     use_date_arr:[],
-    loaded: false
+    loaded: false,
+    statistics: {}
   },
   onLoad(options) {
     let that = this;
@@ -36,6 +37,12 @@ Page({
                 that.setData({use_date_arr: date_arr});
                 console.log(that.data.use_date_arr);
                 that.setData({loaded: true});
+              }
+            });
+            wx.request({
+              url: `${config.serverRoot}/getLearningStatistics?uid=${wx.getStorageSync('user').openid}`,
+              success: function(res){
+                that.setData({statistics: res.data});
               }
             });
           }
