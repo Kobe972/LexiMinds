@@ -11,12 +11,16 @@
   padding-bottom: 1cm;
 }
 
+van-cell{
+  margin-top: 0.5cm;
+}
+
 .progress{
   height: 400rpx;
   background-color: blue;
   display: flex;
   flex-direction: column;
-  margin-top: 2cm;
+  margin-top: 0.5cm;
   margin-left: 5%;
   margin-right: 5%;
   padding-left: 5%;

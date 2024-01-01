@@ -5,7 +5,8 @@ Page({
   data: {
     use_date_arr:[],
     loaded: false,
-    statistics: {}
+    statistics: {},
+    current_book: null
   },
   onLoad(options) {
     let that = this;
@@ -45,6 +46,16 @@ Page({
                 that.setData({statistics: res.data});
               }
             });
+            wx.request({
+              url: `${config.serverRoot}/getCurrentBook?uid=${wx.getStorageSync('user').openid}`,
+              success: function(res){
+                if(res.data)
+                {
+                  if(res.data.avatarURL[0]=='/') res.data.avatarURL = config.serverRoot + res.data.avatarURL;
+                  that.setData({current_book: res.data});
+                } 
+              }
+            })
           }
         });
       }
@@ -55,4 +66,10 @@ Page({
       url: '/pages/select_book_for_learn/select_book_for_learn',
     });
   },
+  navigateToSelectChapter: function(e){
+    const bookId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/select_chapter/select_chapter?bookId=${bookId}&purpose=learn`,
+    });
+  }
 })
