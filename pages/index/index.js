@@ -28,7 +28,10 @@ Page({
                 console.log(res.data);
                 for(var i = 0; i < res.data.length; i++)
                 {
-                  date_arr.push(res.data[i].day);
+                  let parts = res.data[i].day.split('-');
+                  if(parts[1][0] == '0') parts[1] = parts[1].substring(1);
+                  if(parts[2][0] == '0') parts[2] = parts[2].substring(1);
+                  date_arr.push(parts[0] + '-' + parts[1] + '-' + parts[2]);
                 }
                 that.setData({use_date_arr: date_arr});
                 console.log(that.data.use_date_arr);
