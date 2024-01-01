@@ -1,0 +1,24 @@
+
+<view class="donutLogin__app-info">
+  <image class="donutLogin__app-icon" src="{{appIcon}}"></image>
+  <view class="donutLogin__app-name">{{appName}}</view>
+</view>
+
+<view class="donutLogin__login-action">
+  <button class="donutLogin__login-button" type="primary" bindtap="onTapWeixinMiniProgramLogin" disabled="{{!checkedAgree}}">微信小程序登录</button>
+  <checkbox-group bindchange="onCheckboxChange">
+    <label class="donutLogin__checkbox-container">
+      <checkbox class="donutLogin__checkbox" checked="{{checkedAgree}}" />
+      <span class="donutLogin__checkbox-label"></span>
+      <span class="donutLogin__checkbox-text">
+        阅读并同意
+        <span catchtap="onShowAgreement" data-idx="0" style="color: #576b95;">
+          《用户协议》
+        </span>
+        <span catchtap="onShowAgreement" data-idx="1" style="color: #576b95;">
+          《隐私政策》
+        </span>
+      </span>
+    </label>
+  </checkbox-group>
+</view>

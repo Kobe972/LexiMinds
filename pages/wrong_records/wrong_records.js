@@ -96,7 +96,7 @@ Page({
   navigateToDetails: function(e){
     const wordId = e.currentTarget.dataset.wordid;
     wx.navigateTo({
-      url: `/pages/wrong_records/record_detail?wordId=${wordId}`,
+      url: `/pages/single_word/single_word?wordId=${wordId}`,
     });
   }
 })

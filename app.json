@@ -1,59 +1,117 @@
 {
-	"pages": [
-		"pages/index/index",
-		"pages/logs/logs",
-		"pages/test/test",
-		"pages/dictation/dictation",
-		"pages/my/my",
-		"pages/select_book_for_learn/select_book_for_learn",
-		"pages/select_chapter/select_chapter",
-		"pages/learn/learn",
-		"pages/dictation/test",
-		"pages/test/start_test",
-		"pages/settings/settings",
-		"pages/settings/information/information",
-		"pages/test_results/test_results",
-		"pages/test_records/test_records",
-		"pages/test_records/record_detail",
-		"pages/wrong_records/wrong_records",
-		"pages/wrong_records/record_detail"
-	],
-	"window": {
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#F5F5F5",
-		"navigationBarTitleText": "LexiMinds"
-	},
-	"tabBar": {
-		"color": "#000",
-		"selectedColor": "#328EEB",
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"iconPath": "images/home.png",
-				"selectedIconPath": "images/home_filled.png",
-				"text": "首页"
-			},
-			{
-				"pagePath": "pages/test/test",
-				"iconPath": "images/test.png",
-				"selectedIconPath": "images/test_filled.png",
-				"text": "单词词测"
-			},
-			{
-				"pagePath": "pages/dictation/dictation",
-				"iconPath": "images/sound.png",
-				"selectedIconPath": "images/sound_filled.png",
-				"text": "单词听写"
-			},
-			{
-				"pagePath": "pages/my/my",
-				"iconPath": "images/user.png",
-				"selectedIconPath": "images/user_filled.png",
-				"text": "个人中心"
-			}
-		]
-	},
-	"miniApp": {
-		"useAuthorizePage": true
-	}
+  "static": [
+    {
+      "pattern": "pages/donutlogin/donutlogin.*",
+      "platforms": [
+        "mini-ios",
+        "mini-android"
+      ]
+    }
+  ],
+  "mini-ios": {
+    "pages": [
+      "pages/index/index",
+      "pages/logs/logs",
+      "pages/test/test",
+      "pages/dictation/dictation",
+      "pages/my/my",
+      "pages/select_book_for_learn/select_book_for_learn",
+      "pages/select_chapter/select_chapter",
+      "pages/learn/learn",
+      "pages/dictation/test",
+      "pages/test/start_test",
+      "pages/settings/settings",
+      "pages/settings/information/information",
+      "pages/test_results/test_results",
+      "pages/test_records/test_records",
+      "pages/test_records/record_detail",
+      "pages/wrong_records/wrong_records",
+      "pages/learning_records/learning_records",
+      "pages/learning_records/record_details",
+      "pages/donutlogin/donutlogin",
+      "pages/single_word/single_word"
+    ]
+  },
+  "mini-android": {
+    "pages": [
+      "pages/index/index",
+      "pages/logs/logs",
+      "pages/test/test",
+      "pages/dictation/dictation",
+      "pages/my/my",
+      "pages/select_book_for_learn/select_book_for_learn",
+      "pages/select_chapter/select_chapter",
+      "pages/learn/learn",
+      "pages/dictation/test",
+      "pages/test/start_test",
+      "pages/settings/settings",
+      "pages/settings/information/information",
+      "pages/test_results/test_results",
+      "pages/test_records/test_records",
+      "pages/test_records/record_detail",
+      "pages/wrong_records/wrong_records",
+      "pages/learning_records/learning_records",
+      "pages/learning_records/record_details",
+      "pages/donutlogin/donutlogin",
+      "pages/single_word/single_word"
+    ]
+  },
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/test/test",
+    "pages/dictation/dictation",
+    "pages/my/my",
+    "pages/select_book_for_learn/select_book_for_learn",
+    "pages/select_chapter/select_chapter",
+    "pages/learn/learn",
+    "pages/dictation/test",
+    "pages/test/start_test",
+    "pages/settings/settings",
+    "pages/settings/information/information",
+    "pages/test_results/test_results",
+    "pages/test_records/test_records",
+    "pages/wrong_records/wrong_records",
+    "pages/learning_records/learning_records",
+    "pages/learning_records/record_details",
+    "pages/single_word/single_word"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F5F5F5",
+    "navigationBarTitleText": "LexiMinds"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#328EEB",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_filled.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "iconPath": "images/test.png",
+        "selectedIconPath": "images/test_filled.png",
+        "text": "单词词测"
+      },
+      {
+        "pagePath": "pages/dictation/dictation",
+        "iconPath": "images/sound.png",
+        "selectedIconPath": "images/sound_filled.png",
+        "text": "单词听写"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_filled.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "miniApp": {
+    "useAuthorizePage": true
+  }
 }

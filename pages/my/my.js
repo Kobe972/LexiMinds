@@ -7,7 +7,7 @@ Page({
    */
   data: {
     list: [
-      {text:'学习记录', icon:'/images/document.png'},
+      {text:'学习记录', icon:'/images/document.png', action: 'navigateToLearningRecords'},
       {text:'测评记录', icon:'/images/document_edit.png', action: 'navigateToTestResults'},
       {text:'错题集', icon:'/images/notice.png', action: 'navigateToWrongRecords'}
     ],
@@ -107,6 +107,13 @@ Page({
   {
     wx.navigateTo({
       url: '/pages/wrong_records/wrong_records',
+    });
+  },
+
+  navigateToLearningRecords: function()
+  {
+    wx.navigateTo({
+      url: '/pages/learning_records/learning_records',
     });
   }
 })

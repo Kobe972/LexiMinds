@@ -95,6 +95,11 @@ Page({
 
   next: function()
   {
+    wx.request({
+      url: `${config.serverRoot}/insertLearningOrReviewRecord`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, word_id: this.data.wordList[this.data.index].id}
+    });
     if(this.data.index < this.data.wordList.length - 1)
     {
       this.setData({index: this.data.index + 1});
@@ -119,6 +124,11 @@ Page({
 
   finish: function()
   {
+    wx.request({
+      url: `${config.serverRoot}/insertLearningOrReviewRecord`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, word_id: this.data.wordList[this.data.index].id}
+    });
     wx.navigateBack();
   }
 })

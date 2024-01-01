@@ -1,0 +1,14 @@
+<!--pages/learning_records/record_details.wxml-->
+<view class="container">
+  <van-cell-group title="新学 ({{learnedRecordItems.length}})" wx:if="{{learnedRecordItems.length > 0}}">
+    <view wx:for="{{learnedRecordItems}}" wx:key="row{{index}}" >
+      <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+
+  <van-cell-group title="复习 ({{reviewedRecordItems.length}})" wx:if="{{reviewedRecordItems.length > 0}}">
+    <view wx:for="{{reviewedRecordItems}}" wx:key="row{{index}}" >
+      <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+</view>

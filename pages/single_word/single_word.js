@@ -1,4 +1,4 @@
-// pages/wrong_records/record_detail.js
+// pages/single_word/single_word.js
 const config = require('../../utils/config.js');
 const audio = wx.createInnerAudioContext()
 Page({

@@ -1,0 +1,46 @@
+<!--pages/learning_records/learning_records.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="date_picker">
+      <text>时间范围：</text>
+      <picker mode="date" header-text="选择时间"  value="{{date}}" bindchange="bindStartDateChange">
+        <text class="input_box_like" wx:if="{{time_start != ''}}">{{ time_start }}</text>
+        <text class="input_box_like" wx:else>开始时间</text>
+      </picker>
+      <text>~</text>
+      <picker mode="date" header-text="选择时间"  value="{{date}}" bindchange="bindEndDateChange">
+        <text class="input_box_like" wx:if="{{time_end != ''}}">{{ time_end }}</text>
+        <text class="input_box_like" wx:else>结束时间</text>
+      </picker>
+    </view>
+    <view class="table">
+      <view class="header">
+          <view class="th">
+            <text>日期</text>
+          </view>
+          <view class="th">
+            <text>学习词数</text>
+          </view>
+          <view class="th">
+            <text>复习词数</text>
+          </view>
+      </view>
+      <van-divider customStyle="border-color: #1989fa; margin-top: 0; margin-bottom:0"></van-divider>
+      <scroll-view scroll-y class="body">
+        <view class="tr" wx:for="{{resultList}}" wx:key="row{{index}}" data-time="{{item.time}}" bind:tap="navigateToRecords">
+          <view class="td">
+            <text>{{item.time}}</text>
+          </view>
+          <view class="td">
+            <text>{{item.learned_word_count}}</text>
+          </view>
+          <view class="td">
+            <text>{{item.reviewed_word_count}}</text>
+          </view>
+        </view>
+        <text class="center_small">没有更多了</text>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
