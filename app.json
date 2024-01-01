@@ -71,6 +71,7 @@
     "pages/settings/information/information",
     "pages/test_results/test_results",
     "pages/test_records/test_records",
+    "pages/test_records/record_detail",
     "pages/wrong_records/wrong_records",
     "pages/learning_records/learning_records",
     "pages/learning_records/record_details",

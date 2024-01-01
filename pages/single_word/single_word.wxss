@@ -59,7 +59,7 @@
 .translationBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;
@@ -77,7 +77,7 @@
 .examplesBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;
@@ -96,7 +96,7 @@
 .memoryBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;
@@ -115,7 +115,7 @@
 .recordBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;

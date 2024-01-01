@@ -59,11 +59,11 @@
 .translationBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;
   margin-bottom: 0.5cm;
+  height: fit-content;
 }
 .translation{
   display: flex;
@@ -101,11 +101,11 @@
 .examplesBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;
   margin-bottom: 0.5cm;
+  height: fit-content;
 }
 .examples{
   display: flex;
@@ -120,11 +120,11 @@
 .memoryBox
 {
   background-color: whitesmoke;
-  min-height: 2cm;
   display: flex;
   flex-direction: column;
   padding: 0.5cm;
   margin-bottom: 0.5cm;
+  height: fit-content;
 }
 .memory{
   display: flex;
