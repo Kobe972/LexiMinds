@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({wordId: options.wordId});
+    this.setData({wordId: options.wordId, chapterId: options.chapterId});
     this.getRecordDetail();
   },
 
@@ -73,8 +73,11 @@ Page({
       url: `${config.serverRoot}/getWordByWordId?word_id=${this.data.wordId}`,
       success: function(res){
         that.setData({recordDetail: res.data});
-        that.getBookName();
-        that.getChapterName();
+        if(that.data.chapterId)
+        {
+          that.getBookName();
+          that.getChapterName();
+        }
       },
       fail: function(error){
         wx.showToast({
@@ -91,7 +94,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.recordDetail.chapter_id}`,
+      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.chapterId}`,
       success: function(res){
         that.setData({book_name: res.data});
       },
@@ -110,7 +113,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.recordDetail.chapter_id}`,
+      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.chapterId}`,
       success: function(res){
         that.setData({chapter_name: res.data});
       },

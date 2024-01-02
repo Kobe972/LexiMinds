@@ -121,8 +121,9 @@ Page({
 
   navigateToDetails: function(e){
     const wordId = e.currentTarget.dataset.wordid;
+    const chapterId = e.currentTarget.dataset.chapterid;
     wx.navigateTo({
-      url: `/pages/single_word/single_word?wordId=${wordId}`,
+      url: `/pages/single_word/single_word?wordId=${wordId}&chapterId=${chapterId}`,
     });
   }
 })

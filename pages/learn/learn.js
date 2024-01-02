@@ -98,7 +98,7 @@ Page({
     wx.request({
       url: `${config.serverRoot}/insertLearningOrReviewRecord`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, word_id: this.data.wordList[this.data.index].id}
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id}
     });
     if(this.data.index < this.data.wordList.length - 1)
     {
@@ -127,7 +127,7 @@ Page({
     wx.request({
       url: `${config.serverRoot}/insertLearningOrReviewRecord`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, word_id: this.data.wordList[this.data.index].id}
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id}
     });
     wx.navigateBack();
   }

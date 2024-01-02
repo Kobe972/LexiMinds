@@ -36,7 +36,7 @@
       <text>{{recordDetail.fast_memory}}</text>
     </view>
   </view>
-  <view class="recordBox">
+  <view class="recordBox" wx:if="{{chapterId}}">
     <view class="label">
       <text>来源</text>
     </view>
