@@ -55,3 +55,11 @@ radio-group{
   display: flex;
   flex-direction: column;
 }
+radio{
+  margin-bottom: 0.5cm;
+}
+radio .wx-radio-input,
+checkbox .wx-checkbox-input{
+  align-self: baseline;
+  flex: none;
+}

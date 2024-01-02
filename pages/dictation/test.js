@@ -82,6 +82,10 @@ Page({
       success: function (res) {
         wx.hideLoading();
         // Update the data with the retrieved book list
+        for(var i = 0; i < res.data.length; i++)
+        {
+          res.data[i].answer = 'undefined';
+        }
         that.setData({
           problemList: res.data,
         });
@@ -162,6 +166,7 @@ Page({
   set_answer: function(e)
   {
     const value = e.detail.value;
+    console.log(value);
     this.data.problemList[this.data.index].answer = value;
     this.setData({'problemList': this.data.problemList});
   }
