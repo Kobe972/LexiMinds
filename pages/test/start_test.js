@@ -146,7 +146,7 @@ Page({
   {
     if(this.data.problemList[this.data.index].answer == null) this.data.problemList[this.data.index].answer = '';
     let that = this;
-    wx.showLoading({title: "正在上传数据"});
+    wx.showLoading({title: "正在上传数据", mask: true});
     wx.request({
       url: `${config.serverRoot}/postTranslationResult`,
       data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid},

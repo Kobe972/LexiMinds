@@ -2,7 +2,8 @@
 <view class = 'container'>
   <view class='my_topcard'>
     <view class = 'avartar'>
-      <image src="{{avatarUrl}}" style="width:1.5cm; height:1.5cm; border-radius: 50%;"></image>
+      <image src="{{avatarUrl}}" style="width:1.5cm; height:1.5cm; border-radius: 50%;" wx:if="{{avatarUrl}}"></image>
+      <image src="/images/default_avatar.png" style="width:1.5cm; height:1.5cm; border-radius: 50%;" wx:else></image>
     </view>
     <view class = 'information'>
       <text>{{nickName}}</text>

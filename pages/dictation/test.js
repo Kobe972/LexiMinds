@@ -75,7 +75,7 @@ Page({
 
   getChoices: function () {
     var that = this;
-    wx.showLoading({  title: '正在生成题目',})
+    wx.showLoading({  title: '正在生成题目', mask: true})
 
     wx.request({
       url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}`, // Replace with your actual endpoint

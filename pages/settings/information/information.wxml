@@ -3,7 +3,8 @@
 <view class="container">
   <text class="label">头像</text>
   <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    <image class="avatar" src = "{{avatarUrl}}" mode="aspectFit"></image>
+    <image class="avatar" src = "{{avatarUrl}}" mode="aspectFit" wx:if="{{avatarUrl}}"></image>
+    <image class="avatar" src = "/images/default_avatar.png" mode="aspectFit" wx:else></image>
   </button>
   <text class="label">昵称</text>
   <view class="row_flex_view">

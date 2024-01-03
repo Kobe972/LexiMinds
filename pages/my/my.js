@@ -11,8 +11,8 @@ Page({
       {text:'测评记录', icon:'/images/document_edit.png', action: 'navigateToTestResults'},
       {text:'错题集', icon:'/images/notice.png', action: 'navigateToWrongRecords'}
     ],
-    nickName: "暂无",
-    phoneNumber: "暂无",
+    nickName: "未设置昵称",
+    phoneNumber: "未设置手机号",
     avatarUrl: ""
   },
 
