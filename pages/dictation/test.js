@@ -21,6 +21,7 @@ Page({
       method: "POST",
       data: {uid: wx.getStorageSync('user').openid}
     });
+    wx.enableAlertBeforeUnload({message: "当前单据有未保存的数据，是否返回"});
   },
 
   /**

@@ -1,4 +1,4 @@
-/* pages/test_records/record_detail.wxss */
+/* pages/wrong_records/record_detail.wxss */
 .container{
   height: 100vh;
   background-color: #EEEEEE;

@@ -1,6 +1,6 @@
 <!--pages/wrong_records/wrong_records.wxml-->
 <view class="container">
-  <van-cell-group title="错题集">
+  <van-cell-group title="错题集 ({{recordItems.length}})">
     <view wx:for="{{recordItems}}" wx:key="row{{index}}" >
       <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
     </view>

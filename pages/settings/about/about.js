@@ -1,14 +1,11 @@
-// pages/settings/settings.js
+// pages/settings/about/about.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      {text:'个人资料', 'next_page': '/pages/settings/information/information'},
-      {text:'关于我们', 'next_page': '/pages/settings/about/about'}
-    ]
+
   },
 
   /**
@@ -65,12 +62,5 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-
-  navigateToNextPage: function (event) {
-    const next_page = event.currentTarget.dataset.next_page;
-    wx.navigateTo({
-      url: next_page,
-    });
   }
 })

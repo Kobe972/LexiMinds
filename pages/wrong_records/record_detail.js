@@ -1,4 +1,4 @@
-// pages/test_records/record_detail.js
+// pages/wrong_records/record_detail.js
 const config = require('../../utils/config.js');
 const audio = wx.createInnerAudioContext()
 Page({
@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({recordId: options.recordId});
+    this.setData({wordId: options.wordId, chapterId: options.chapterId});
     this.getRecordDetail();
   },
 
@@ -70,11 +70,14 @@ Page({
   getRecordDetail: function(){
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getRecordItemWithWord?record_id=${this.data.recordId}`,
+      url: `${config.serverRoot}/getWordByWordId?word_id=${this.data.wordId}`,
       success: function(res){
         that.setData({recordDetail: res.data});
-        that.getBookName();
-        that.getChapterName();
+        if(that.data.chapterId)
+        {
+          that.getBookName();
+          that.getChapterName();
+        }
       },
       fail: function(error){
         wx.showToast({
@@ -91,7 +94,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.recordDetail.chapter_id}`,
+      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.chapterId}`,
       success: function(res){
         that.setData({book_name: res.data});
       },
@@ -110,7 +113,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.recordDetail.chapter_id}`,
+      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.chapterId}`,
       success: function(res){
         that.setData({chapter_name: res.data});
       },
@@ -133,25 +136,22 @@ Page({
     audio.play();
   },
 
-  feedback: function()
+  hideRecord: function()
   {
     let that = this;
     wx.showModal({
-      title: '确认反馈',
-      content: '是否确认反馈？如果AI评分有误，请点击确认。',
+      title: '确认删除',
+      content: '是否确认删除此记录？注意：删除错题记录并不会同时隐藏测试结果的错题显示。',
       complete: (res) => {
         if (res.confirm) {
-          let judge;
-          if(that.data.recordDetail.score <= 0.85) judge = 1;
-          else judge = 0;
           wx.request({
-            url: `${config.serverRoot}/insertFeedback`,
+            url: `${config.serverRoot}/hideWrongRecord`,
             method: 'POST',
-            data: {uid: wx.getStorageSync('user').openid, record_id: that.data.recordId, english: that.data.recordDetail.english, answer: that.data.recordDetail.answer, judge: judge},
+            data: {uid: wx.getStorageSync('user').openid, word_id: that.data.wordId},
             success: function(res){
               wx.navigateBack();
               wx.showToast({
-                title: '反馈成功！',
+                title: '删除成功！',
                 icon: 'success',
                 duration: 2000,
                 mask: true
@@ -159,7 +159,7 @@ Page({
             },
             fail: function(err){
               wx.showToast({
-                title: '反馈失败！',
+                title: '删除失败！',
                 icon: 'error',
                 duration: 2000,
                 mask: true

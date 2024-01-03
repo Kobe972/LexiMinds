@@ -1,4 +1,4 @@
-<!--pages/test_records/record_detail.wxml-->
+<!--pages/wrong_records/record_detail.wxml-->
 <view class="container">
   <view class="english">
     <text>{{recordDetail.english}}</text>
@@ -36,16 +36,15 @@
       <text>{{recordDetail.fast_memory}}</text>
     </view>
   </view>
-  <view class="recordBox">
+  <view class="recordBox" wx:if="{{chapterId}}">
     <view class="label">
-      <text>做题记录</text>
+      <text>来源</text>
     </view>
     <view class="record">
-      <text wx:if="{{recordDetail.score>=0}}">来源：{{book_name+", "+chapter_name+"\n"}}我的答案：{{recordDetail.answer+"\n"}}评分：{{recordDetail.score}}</text>
-      <text wx:else>来源：{{book_name+", "+chapter_name+"\n"}}我的答案：{{recordDetail.answer}}</text>
+      <text>{{book_name+", "+chapter_name+"\n"}}</text>
     </view>
   </view>
   <view class="feedback">
-    <van-button plain type="info" size="mini" bind:click="feedback">反馈</van-button>
+    <van-button plain type="danger" size="mini" bind:click="hideRecord">删除</van-button>
   </view>
 </view>

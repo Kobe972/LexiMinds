@@ -1,0 +1,17 @@
+/* pages/settings/about/about.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  padding-top: 0.5cm;
+}
+
+text{
+  margin-bottom: 0.5cm;
+  background-color: whitesmoke;
+  font-size: 30rpx;
+  padding: 0.2cm
+}
