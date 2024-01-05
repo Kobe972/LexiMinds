@@ -1,0 +1,8 @@
+<!--pages/my_favorite/my_favorite.wxml-->
+<view class="container">
+  <van-cell-group title="我的收藏 ({{recordItems.length}})">
+    <view wx:for="{{recordItems}}" wx:key="row{{index}}" >
+      <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+</view>

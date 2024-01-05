@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-icon": "/vant-weapp/dist/icon/index",
+    "van-button": "/vant-weapp/dist/button/index",
+    "van-cell": "/vant-weapp/dist/cell/index"
+  }
 }

@@ -135,10 +135,40 @@
 .memory text{
   font-size: 30rpx;
 }
+.noteBox
+{
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5cm;
+  margin-bottom: 0.5cm;
+  height: fit-content;
+}
+.noteContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+.noteContent text{
+  font-size: 30rpx;
+}
 
 .margin{
   height: 1.5cm;
 }
 .margin image{
   height: 1.5cm;
+}
+van-button{
+  border: none;
+  background-color: #EEEEEE;
+  width: fit-content;
+}
+.marks{
+  display: flex;
+  flex-direction: row;
+}
+.favorites{
+  flex-grow: 1;
 }

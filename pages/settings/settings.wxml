@@ -1,7 +1,4 @@
 <!--pages/settings/settings.wxml-->
 <view class = 'container'>
-  <view class="listItem" wx:for="{{list}}" wx:for-item='row' wx:key="row{{index}}" bindtap="navigateToNextPage" data-next_page = "{{row.next_page}}">
-    <text>{{row.text}}</text>
-    <image class="small" src="/images/arrow.png"></image>
-  </view>
+  <van-cell title="{{row.text}}" is-link wx:for="{{list}}" wx:for-item='row' wx:key="row{{index}}" bind:click="navigateToNextPage" data-next_page = "{{row.next_page}}"></van-cell>
 </view>

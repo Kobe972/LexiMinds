@@ -1,0 +1,8 @@
+<!--pages/my_note/my_note.wxml-->
+<view class="container">
+  <van-cell-group title="我的笔记 ({{recordItems.length}})">
+    <view wx:for="{{recordItems}}" wx:key="row{{index}}" >
+      <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" label="{{item.value}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+</view>

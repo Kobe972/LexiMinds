@@ -13,9 +13,5 @@
       <van-button icon="setting-o" type="default" round="true" size="small" color="blue" bindtap="navigateToSettings"/>
     </view>
   </view>
-  <view class="listItem" wx:for="{{list}}" wx:for-item='row' wx:key="row{{index}}" bind:tap="{{row.action}}">
-    <image class="icon" src="{{row.icon}}"></image>
-    <text>{{row.text}}</text>
-    <image class="small" src="/images/arrow.png"></image>
-  </view>
+  <van-cell icon="{{row.icon}}" title="{{row.text}}" is-link wx:for="{{list}}" wx:for-item='row' wx:key="row{{index}}" bind:click="{{row.action}}"></van-cell>
 </view>

@@ -31,7 +31,9 @@
       "pages/donutlogin/donutlogin",
       "pages/single_word/single_word",
       "pages/wrong_records/record_detail",
-      "pages/settings/about/about"
+      "pages/settings/about/about",
+      "pages/my_favorite/my_favorite",
+      "pages/my_note/my_note"
     ]
   },
   "mini-android": {
@@ -81,7 +83,9 @@
     "pages/learning_records/record_details",
     "pages/single_word/single_word",
     "pages/wrong_records/record_detail",
-    "pages/settings/about/about"
+    "pages/settings/about/about",
+    "pages/my_favorite/my_favorite",
+    "pages/my_note/my_note"
   ],
   "window": {
     "navigationBarTextStyle": "black",

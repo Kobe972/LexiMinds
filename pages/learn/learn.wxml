@@ -39,10 +39,45 @@
       <text>{{wordList[index].fast_memory}}</text>
     </view>
   </view>
+  <view class="noteBox" wx:if="{{notes != ''}}">
+    <view class="label">
+      <text>笔记</text>
+    </view>
+    <view class="noteContent">
+      <text>{{notes}}</text>
+    </view>
+  </view>
+  <view class="marks">
+    <view class="favorites">
+      <van-button plain icon="star-o" type="info" size="mini" bind:click="change_favor" wx:if="{{!is_favored}}">收藏</van-button>
+      <van-button plain icon="star" type="info" size="mini" bind:click="change_favor" wx:else>取消收藏</van-button>
+    </view>
+    <view class="note">
+      <van-button plain type="info" size="mini" bind:click="onClickShow">笔记</van-button>
+    </view>
+  </view>
   <view class="margin">
     <image></image>
   </view>
 </view>
+<van-dialog
+    use-slot
+    title="编辑笔记"
+    show="{{ show_edit_note }}"
+    show-cancel-button
+    bind:close="onClickHide"
+    bind:confirm="change_note"
+  >
+  <van-field
+    value="{{ notes }}"
+    autosize
+    placeholder="请输入笔记"
+    type="textarea"
+    maxlength="100"
+    border="{{ false }}"
+    bind:change="onNoteChange"
+  />
+</van-dialog>
 <view class="control">
     <button class="prev" bindtap="prev" wx:if="{{index>0}}">{{"<"}}</button>
     <button class="next" bindtap="next" wx:if="{{index < wordList.length - 1}}">{{">"}}</button>

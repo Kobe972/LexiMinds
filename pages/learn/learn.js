@@ -1,13 +1,16 @@
 // pages/learn/learn.js
 const config = require('../../utils/config.js');
-const audio = wx.createInnerAudioContext()
+const audio = wx.createInnerAudioContext();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    serverRoot: config.serverRoot
+    serverRoot: config.serverRoot,
+    is_favored: false,
+    notes: "",
+    show_edit_note: false
   },
 
   /**
@@ -85,6 +88,8 @@ Page({
         that.setData({
           wordList: res.data,
         });
+
+        that.getWordMarks();
       },
       fail: function (err) {
         // Handle the failure
@@ -104,6 +109,7 @@ Page({
     {
       this.setData({index: this.data.index + 1});
     }
+    this.getWordMarks();
   },
 
   prev: function()
@@ -112,6 +118,7 @@ Page({
     {
       this.setData({index: this.data.index - 1});
     }
+    this.getWordMarks();
   },
 
   play_audio: function()
@@ -130,5 +137,54 @@ Page({
       data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id}
     });
     wx.navigateBack();
-  }
+  },
+
+  getWordMarks: function()
+  {
+    let that = this;
+    wx.request({
+      url: `${config.serverRoot}/getWordMarkByContentId?uid=${wx.getStorageSync('user').openid}&content_id=${this.data.wordList[this.data.index].id}`,
+      success: function(res){
+        let favored = false;
+        let notes = "";
+        for(var i = 0; i < res.data.length; i++)
+        {
+          if(res.data[i].type == 'favor' && res.data[i].value == 'true') favored = true;
+          if(res.data[i].type == 'note') notes = res.data[i].value;
+        }
+        that.setData({is_favored: favored, notes: notes});
+      }
+    })
+  },
+
+  change_favor: function()
+  {
+    this.setData({is_favored: !this.data.is_favored});
+    wx.request({
+      url: `${config.serverRoot}/updateWordMarkByContentId`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "favor", value: this.data.is_favored}
+    });
+  },
+
+  onClickShow() {
+    this.setData({ show_edit_note: true });
+  },
+
+  onClickHide() {
+    this.setData({ show_edit_note: false });
+  },
+
+  onNoteChange: function(e){
+    this.setData({notes: e.detail});
+  },
+
+  change_note: function()
+  {
+    wx.request({
+      url: `${config.serverRoot}/updateWordMarkByContentId`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "note", value: this.data.notes}
+    });
+  },
 })

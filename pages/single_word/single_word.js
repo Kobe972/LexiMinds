@@ -7,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    serverRoot: config.serverRoot
+    serverRoot: config.serverRoot,
+    is_favored: false,
+    notes: "",
+    show_edit_note: false
   },
 
   /**
@@ -73,6 +76,7 @@ Page({
       url: `${config.serverRoot}/getWordByWordId?word_id=${this.data.wordId}`,
       success: function(res){
         that.setData({recordDetail: res.data});
+        that.getWordMarks();
         if(that.data.chapterId)
         {
           that.getBookName();
@@ -134,5 +138,54 @@ Page({
     const URL = "https://dict.youdao.com/dictvoice?audio=" + this.data.recordDetail.english + "&type=2";
     audio.src = URL;
     audio.play();
+  },
+
+  getWordMarks: function()
+  {
+    let that = this;
+    wx.request({
+      url: `${config.serverRoot}/getWordMarkByWordId?uid=${wx.getStorageSync('user').openid}&word_id=${this.data.wordId}`,
+      success: function(res){
+        let favored = false;
+        let notes = "";
+        for(var i = 0; i < res.data.length; i++)
+        {
+          if(res.data[i].type == 'favor' && res.data[i].value == 'true') favored = true;
+          if(res.data[i].type == 'note') notes = res.data[i].value;
+        }
+        that.setData({is_favored: favored, notes: notes});
+      }
+    })
+  },
+
+  change_favor: function()
+  {
+    this.setData({is_favored: !this.data.is_favored});
+    wx.request({
+      url: `${config.serverRoot}/updateWordMarkByWordId`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, word_id: this.data.wordId, type: "favor", value: this.data.is_favored}
+    });
+  },
+
+  onClickShow() {
+    this.setData({ show_edit_note: true });
+  },
+
+  onClickHide() {
+    this.setData({ show_edit_note: false });
+  },
+
+  onNoteChange: function(e){
+    this.setData({notes: e.detail});
+  },
+
+  change_note: function()
+  {
+    wx.request({
+      url: `${config.serverRoot}/updateWordMarkByWordId`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, word_id: this.data.wordId, type: "note", value: this.data.notes}
+    });
   },
 })

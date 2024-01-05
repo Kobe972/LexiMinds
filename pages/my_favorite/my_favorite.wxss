@@ -1,7 +1,8 @@
-/* pages/settings/settings.wxss */
+/* pages/my_favorite/my_favorite.wxss */
 .container{
   height: 100vh;
   background-color: #EEEEEE;
   display: flex;
   flex-direction: column;
+  padding-top: 0.2cm;
 }
