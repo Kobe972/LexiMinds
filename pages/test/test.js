@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookList: [],
+    commonBookList: [],
+    privateBookList: [],
     serverRoot: config.serverRoot
   },
 
@@ -78,7 +79,22 @@ Page({
 
         // Update the data with the retrieved book list
         that.setData({
-          bookList: res.data,
+          commonBookList: res.data,
+        });
+      },
+      fail: function (err) {
+        // Handle the failure
+        console.error('Failed to get book list', err);
+      },
+    });
+    wx.request({
+      url: `${config.serverRoot}/getPrivateBooks?uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      method: 'GET',
+      success: function (res) {
+
+        // Update the data with the retrieved book list
+        that.setData({
+          privateBookList: res.data,
         });
       },
       fail: function (err) {

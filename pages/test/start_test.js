@@ -95,7 +95,7 @@ Page({
   getChoices: function () {
     var that = this;
     wx.request({
-      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
 
@@ -158,6 +158,7 @@ Page({
           content: '已发送至服务器，请到个人中心->测评记录看测试结果',
           showCancel:false,
           complete: (res) => {
+            wx.disableAlertBeforeUnload();
             wx.navigateBack();
           }
         });

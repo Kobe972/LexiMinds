@@ -79,7 +79,7 @@ Page({
     var that = this;
 
     wx.request({
-      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         console.log(res.data);

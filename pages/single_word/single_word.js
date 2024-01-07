@@ -98,7 +98,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.chapterId}`,
+      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`,
       success: function(res){
         that.setData({book_name: res.data});
       },
@@ -117,7 +117,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.chapterId}`,
+      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`,
       success: function(res){
         that.setData({chapter_name: res.data});
       },

@@ -71,7 +71,7 @@ Page({
     var that = this;
 
     wx.request({
-      url: `${config.serverRoot}/getChaptersByBookId?bookId=${this.data.bookId}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getChaptersByBookId?bookId=${this.data.bookId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         // Update the data with the retrieved book list

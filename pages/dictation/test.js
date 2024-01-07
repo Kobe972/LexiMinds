@@ -78,7 +78,7 @@ Page({
     wx.showLoading({  title: '正在生成题目', mask: true})
 
     wx.request({
-      url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         wx.hideLoading();
@@ -95,6 +95,7 @@ Page({
       fail: function (err) {
         // Handle the failure
         wx.hideLoading();
+        wx.disableAlertBeforeUnload();
         wx.navigateBack();
         wx.showToast({
           title: '题目生成失败',
@@ -159,6 +160,7 @@ Page({
       content: '正确数：' + correct + '/' + this.data.problemList.length + '\n正确率：'  + (correct / this.data.problemList.length*100).toFixed(1) + "%",
       showCancel:false,
       complete: (res) => {
+        wx.disableAlertBeforeUnload();
         if(success) wx.navigateBack();
       }
     })
