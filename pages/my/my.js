@@ -11,7 +11,8 @@ Page({
       {text:'测评记录', icon:'/images/document_edit.png', action: 'navigateToTestResults'},
       {text:'错题集', icon:'/images/notice.png', action: 'navigateToWrongRecords'},
       {text:'我的收藏', icon:'star-o', action: 'navigateToMyFavorite'},
-      {text:'我的笔记', icon:'comment-o', action: 'navigateToMyNote'}
+      {text:'我的笔记', icon:'comment-o', action: 'navigateToMyNote'},
+      {text:'我的通知', icon:'chat-o', action: 'navigateToMyNotification'}
     ],
     nickName: "未设置昵称",
     phoneNumber: "未设置手机号",
@@ -130,6 +131,13 @@ Page({
   {
     wx.navigateTo({
       url: '/pages/my_note/my_note',
+    });
+  },
+
+  navigateToMyNotification: function()
+  {
+    wx.navigateTo({
+      url: '/pages/my_notification/my_notification',
     });
   }
 })

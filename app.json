@@ -33,7 +33,8 @@
       "pages/wrong_records/record_detail",
       "pages/settings/about/about",
       "pages/my_favorite/my_favorite",
-      "pages/my_note/my_note"
+      "pages/my_note/my_note",
+      "pages/my_notification/my_notification"
     ]
   },
   "mini-android": {
@@ -85,7 +86,8 @@
     "pages/wrong_records/record_detail",
     "pages/settings/about/about",
     "pages/my_favorite/my_favorite",
-    "pages/my_note/my_note"
+    "pages/my_note/my_note",
+    "pages/my_notification/my_notification"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -1,0 +1,12 @@
+<!--pages/my_notification/my_notification.wxml-->
+<van-cell-group title="通知消息 ({{notificationList.length}})" wx:if="{{notificationList.length > 0}}">
+  <block wx:for="{{notificationList}}" wx:key="id">
+    <van-card centered desc="{{item.bookname}}" title="邀请你加入词书" thumb="{{serverRoot + item.avatarURL}}">
+      <view slot="footer">
+        <van-button size="mini" data-bookid="{{item.book_id}}" bind:click = "acceptBookInvitation">接受</van-button>
+        <van-button size="mini" data-id="{{item.id}}" bind:click="declineBookInvitation">拒绝</van-button>
+      </view>
+    </van-card>
+  </block>
+</van-cell-group>
+<van-cell-group wx:else title="无通知"></van-cell-group>

@@ -109,5 +109,38 @@ Page({
     wx.navigateTo({
       url: `/pages/select_chapter/select_chapter?bookId=${bookId}&purpose=${purpose}`,
     });
+  },
+
+  onCloseSwipeCell: function(event) {
+    const { position, instance } = event.detail;
+    const bookId = event.currentTarget.dataset.bookid;
+    let that = this;
+    switch (position) {
+      case 'cell':
+        instance.close();
+        break;
+      case 'right':
+        wx.showModal({
+          title: '确认删除？',
+          content: '此操作不可逆！',
+          complete: (res) => {
+            if (res.cancel) {
+              
+            }
+        
+            if (res.confirm) {
+              wx.request({
+                url: `${config.serverRoot}/deleteBookOwnershipByOwner`,
+                method: 'POST',
+                data: {uid: wx.getStorageSync('user').openid, book_id: bookId},
+                success: function(res) {
+                  that.onLoad(null);
+                }
+              })
+            }
+          }
+        })
+        break;
+    }
   }
 })

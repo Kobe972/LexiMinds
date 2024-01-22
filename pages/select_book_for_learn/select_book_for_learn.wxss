@@ -1,1 +1,26 @@
 /* pages/select_book_for_learn/select_book_for_learn.wxss */
+.van-swipe-cell__right {
+  height: inherit;
+  width: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.slot_button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: red;
+  text-align: center;
+  justify-self: center;
+  font-size: 27rpx;
+ 	color: #fff;
+  height: inherit;
+  width: inherit;
+}
+
