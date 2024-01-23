@@ -3,5 +3,6 @@
     "van-card": "/vant-weapp/dist/card/index",
     "van-button": "/vant-weapp/dist/button/index",
     "van-cell-group": "/vant-weapp/dist/cell-group/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

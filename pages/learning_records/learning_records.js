@@ -1,5 +1,6 @@
 // pages/learning_records/learning_records.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -50,7 +51,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.onLoad(null);
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -69,8 +71,9 @@ Page({
 
   updateResultData: function(){
     let that = this;
+    let sign = md5("getBriefLearningOrReviewRecordItems" + this.data.time_end + this.data.time_start + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getBriefLearningOrReviewRecordItems?time_start=${this.data.time_start}&time_end=${this.data.time_end}&uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getBriefLearningOrReviewRecordItems?time_start=${this.data.time_start}&time_end=${this.data.time_end}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         that.setData({resultList: res.data});
       }

@@ -1,7 +1,9 @@
 <!--pages/select_chapter/select_chapter.wxml-->
 <view class="container">
-  <view class="listItem" wx:for="{{chapterList}}" wx:key="row{{index}}" data-chapterId="{{item.id}}" bindtap="navigateToNextStep">
-    <text>{{item.name}}</text>
-    <image class="small" src="/images/arrow.png"></image>
-  </view>
+  <van-cell-group title="章节选择">
+    <van-cell title="{{row.name}}" is-link wx:for="{{chapterList}}" wx:for-item='row' wx:key="row{{index}}" bind:click="navigateToNextStep" data-chapterId="{{row.id}}"></van-cell>
+  </van-cell-group>
+  <van-cell-group title="选项">
+    <van-cell title="下载词书" bind:click="downloadBook"></van-cell>
+  </van-cell-group>
 </view>

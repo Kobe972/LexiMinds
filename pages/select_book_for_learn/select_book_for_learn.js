@@ -1,5 +1,6 @@
 // pages/select_book_for_learn/select_book_for_learn.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -85,8 +86,9 @@ Page({
         console.error('Failed to get book list', err);
       },
     });
+    let sign = md5("getPrivateBooks" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getPrivateBooks?uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getPrivateBooks?uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
 
@@ -127,12 +129,13 @@ Page({
             if (res.cancel) {
               
             }
-        
+            
             if (res.confirm) {
+              let sign = md5("deleteBookOwnershipByOwner" + bookId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
               wx.request({
                 url: `${config.serverRoot}/deleteBookOwnershipByOwner`,
                 method: 'POST',
-                data: {uid: wx.getStorageSync('user').openid, book_id: bookId},
+                data: {uid: wx.getStorageSync('user').openid, book_id: bookId, sign: sign},
                 success: function(res) {
                   that.onLoad(null);
                 }

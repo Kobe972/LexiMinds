@@ -1,5 +1,6 @@
 // pages/my_notification/my_notification.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -49,7 +50,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.onLoad();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -72,8 +74,9 @@ Page({
     {
       if(this.data.notificationList[i].type == 'book_invitation')
       {
+        let sign = md5("getInvitingBookByBookId" + that.data.notificationList[i].content + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
         wx.request({
-          url: `${config.serverRoot}/getInvitingBookByBookId?uid=${wx.getStorageSync('user').openid}&book_id=${that.data.notificationList[i].content}`,
+          url: `${config.serverRoot}/getInvitingBookByBookId?uid=${wx.getStorageSync('user').openid}&book_id=${that.data.notificationList[i].content}&sign=${sign}`,
           method: 'GET',
           success: function(res){
             that.data.notificationList[i].bookname = res.data.bookname;
@@ -88,9 +91,9 @@ Page({
 
   getNotificationList: function () {
     var that = this;
-
+    let sign = md5("getNotificationsByUid" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getNotificationsByUid?uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getNotificationsByUid?uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         // Update the data with the retrieved book list
@@ -117,10 +120,11 @@ Page({
           
         }
         if (res.confirm) {
+          let sign = md5("acceptBookInvitation" + bookId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
           wx.request({
             url: `${config.serverRoot}/acceptBookInvitation`,
             method: 'POST',
-            data: {uid: wx.getStorageSync('user').openid, book_id: bookId},
+            data: {uid: wx.getStorageSync('user').openid, book_id: bookId, sign: sign},
             success: function(res) {
               that.getNotificationList();
             }
@@ -141,10 +145,11 @@ Page({
           
         }
         if (res.confirm) {
+          let sign = md5("deleteNotificationById" + id + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
           wx.request({
             url: `${config.serverRoot}/deleteNotificationById`,
             method: 'POST',
-            data: {id: id},
+            data: {id: id, uid: wx.getStorageSync('user').openid, sign: sign},
             success: function(res) {
               that.getNotificationList();
             }

@@ -1,5 +1,6 @@
 // pages/learning_records/record_details.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -50,7 +51,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.onLoad({time: this.data.time});
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -69,8 +71,9 @@ Page({
 
   loadRecordItems: function(){
     let that = this;
+    let sign = md5("getLearnedWordsByTime" + this.data.time + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getLearnedWordsByTime?time=${this.data.time}&uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getLearnedWordsByTime?time=${this.data.time}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         let learnedRecordItems = res.data;
         for(var i = 0; i < learnedRecordItems.length; i++)
@@ -93,8 +96,9 @@ Page({
         });
       }
     });
+    sign = md5("getReviewedWordsByTime" + this.data.time + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getReviewedWordsByTime?time=${this.data.time}&uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getReviewedWordsByTime?time=${this.data.time}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         let reviewedRecordItems = res.data;
         for(var i = 0; i < reviewedRecordItems.length; i++)

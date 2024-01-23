@@ -3,6 +3,9 @@
     "navigation-bar": "/components/navigation-bar/navigation-bar",
     "van-search": "/vant-weapp/dist/search/index",
     "van-card": "/vant-weapp/dist/card/index",
-    "van-button": "/vant-weapp/dist/button/index"
+    "van-button": "/vant-weapp/dist/button/index",
+    "van-icon": "/vant-weapp/dist/icon/index",
+    "van-cell": "/vant-weapp/dist/cell/index",
+    "van-cell-group": "/vant-weapp/dist/cell-group/index"
   }
 }

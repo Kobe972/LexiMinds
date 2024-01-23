@@ -1,5 +1,6 @@
 // pages/dictation/dictation.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -69,7 +70,6 @@ Page({
 
   getBookList: function () {
     var that = this;
-
     wx.request({
       url: `${config.serverRoot}/getCommonBooks`, // Replace with your actual endpoint
       method: 'GET',
@@ -87,8 +87,9 @@ Page({
         console.error('Failed to get book list', err);
       },
     });
+    let sign = md5("getPrivateBooks" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getPrivateBooks?uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getPrivateBooks?uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
 

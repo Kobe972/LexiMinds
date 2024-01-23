@@ -1,5 +1,6 @@
 // pages/dictation/test.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 const audio = wx.createInnerAudioContext()
 Page({
 
@@ -16,10 +17,11 @@ Page({
   onLoad(options) {
     this.setData({index: 0, chapterId: options.chapterId});
     this.getChoices();
+    let sign = md5("setClockIn" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/setClockIn`,
       method: "POST",
-      data: {uid: wx.getStorageSync('user').openid}
+      data: {uid: wx.getStorageSync('user').openid, sign: sign}
     });
     wx.enableAlertBeforeUnload({message: "当前单据有未保存的数据，是否返回"});
   },
@@ -76,9 +78,9 @@ Page({
   getChoices: function () {
     var that = this;
     wx.showLoading({  title: '正在生成题目', mask: true})
-
+    let sign = md5("getChoicesByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         wx.hideLoading();
@@ -141,10 +143,11 @@ Page({
     {
       if(this.data.problemList[i].truth == this.data.problemList[i].answer) correct++;
     }
+    let sign = md5("postDictationResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/postDictationResult`,
       method: 'POST',
-      data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid},
+      data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid, sign: sign},
       fail: function(err){
         success = false;
         wx.showToast({

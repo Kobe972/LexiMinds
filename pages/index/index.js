@@ -1,5 +1,6 @@
 // index.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 
 Page({
   data: {
@@ -22,8 +23,9 @@ Page({
             obj.session_key = res.data.session_key;
             //存储openid
             wx.setStorageSync('user', obj);
+            let sign = md5("getClockIn" + obj.openid + obj.session_key);
             wx.request({
-              url: `${config.serverRoot}/getClockIn?uid=${wx.getStorageSync('user').openid}`,
+              url: `${config.serverRoot}/getClockIn?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
               method: "GET",
               success: function(res){
                 let date_arr = [];
@@ -40,14 +42,16 @@ Page({
                 that.setData({loaded: true});
               }
             });
+            sign = md5("getLearningStatistics" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
             wx.request({
-              url: `${config.serverRoot}/getLearningStatistics?uid=${wx.getStorageSync('user').openid}`,
+              url: `${config.serverRoot}/getLearningStatistics?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
               success: function(res){
                 that.setData({statistics: res.data});
               }
             });
+            sign = md5("getCurrentBook" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
             wx.request({
-              url: `${config.serverRoot}/getCurrentBook?uid=${wx.getStorageSync('user').openid}`,
+              url: `${config.serverRoot}/getCurrentBook?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
               success: function(res){
                 if(res.data)
                 {
@@ -60,6 +64,10 @@ Page({
         });
       }
     });
+  },
+  onPullDownRefresh: function() {
+    this.onLoad(null);
+    wx.stopPullDownRefresh();
   },
   handleStartNewWords: function () {
     wx.navigateTo({

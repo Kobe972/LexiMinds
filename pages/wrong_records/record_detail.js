@@ -1,5 +1,6 @@
 // pages/wrong_records/record_detail.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 const audio = wx.createInnerAudioContext()
 Page({
 
@@ -50,7 +51,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.onLoad({wordId: this.data.wordId, chapterId: this.data.chapterId});
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -93,8 +95,9 @@ Page({
   getBookName: function()
   {
     let that = this;
+    let sign = md5("getBookNameByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getBookNameByChapterId?chapter_id=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         that.setData({book_name: res.data});
       },
@@ -112,10 +115,12 @@ Page({
   getChapterName: function()
   {
     let that = this;
+    let sign = md5("getChapterNameByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getChapterNameByChapterId?chapter_id=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
-        that.setData({chapter_name: res.data});
+        if(res.data != null) that.setData({chapter_name: res.data});
+        else that.setData({chapter_name: "已删除章节"});
       },
       fail: function(error){
         wx.showToast({
@@ -144,10 +149,11 @@ Page({
       content: '是否确认删除此记录？注意：删除错题记录并不会同时隐藏测试结果的错题显示。',
       complete: (res) => {
         if (res.confirm) {
+          let sign = md5("hideWrongRecord" + wx.getStorageSync('user').openid + that.data.wordId + wx.getStorageSync('user').session_key);
           wx.request({
             url: `${config.serverRoot}/hideWrongRecord`,
             method: 'POST',
-            data: {uid: wx.getStorageSync('user').openid, word_id: that.data.wordId},
+            data: {uid: wx.getStorageSync('user').openid, word_id: that.data.wordId, sign: sign},
             success: function(res){
               wx.navigateBack();
               wx.showToast({

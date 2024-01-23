@@ -1,5 +1,6 @@
 // pages/select_chapter/select_chapter.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -69,9 +70,9 @@ Page({
 
   getChapterList: function () {
     var that = this;
-
+    let sign = md5("getChaptersByBookId" + this.data.bookId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getChaptersByBookId?bookId=${this.data.bookId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getChaptersByBookId?bookId=${this.data.bookId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         // Update the data with the retrieved book list
@@ -106,5 +107,33 @@ Page({
         url: `/pages/test/start_test?chapterId=${chapterId}`,
       });
     }
+  },
+
+  downloadBook: function() {
+    let sign = md5("generateBookPdf" + this.data.bookId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+    wx.showLoading({
+      title: '正在下载',
+      mask: true
+    })
+    wx.downloadFile({
+      url: `${config.serverRoot}/generateBookPdf?bookId=${this.data.bookId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
+      success: function (res) {
+        wx.hideLoading();
+        const filePath = res.tempFilePath
+        wx.openDocument({
+            filePath: filePath,
+            showMenu: true
+        })
+      },
+      fail: function(res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '下载失败！',
+          icon: 'error',
+          duration: 2000,
+          mask: true
+        })
+      }
+    });
   }
 })

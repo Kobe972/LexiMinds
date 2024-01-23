@@ -1,5 +1,6 @@
 // pages/test/start_test.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 const audio = wx.createInnerAudioContext()
 Page({
 
@@ -16,10 +17,11 @@ Page({
   onLoad(options) {
     this.setData({index: 0, chapterId: options.chapterId});
     this.getChoices();
+    let sign = md5("setClockIn" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/setClockIn`,
       method: "POST",
-      data: {uid: wx.getStorageSync('user').openid}
+      data: {uid: wx.getStorageSync('user').openid, sign: sign}
     });
     wx.enableAlertBeforeUnload({message: "当前单据有未保存的数据，是否返回"});
   },
@@ -94,8 +96,9 @@ Page({
 
   getChoices: function () {
     var that = this;
+    let sign = md5("getWordsByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
 
@@ -147,9 +150,10 @@ Page({
     if(this.data.problemList[this.data.index].answer == null) this.data.problemList[this.data.index].answer = '';
     let that = this;
     wx.showLoading({title: "正在上传数据", mask: true});
+    let sign = md5("postTranslationResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/postTranslationResult`,
-      data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid},
+      data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid, sign: sign},
       method: 'POST',
       success: function (res) {
         wx.hideLoading();

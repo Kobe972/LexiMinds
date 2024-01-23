@@ -1,5 +1,6 @@
 // pages/test_records/test_records.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -50,7 +51,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.onLoad({resultId: this.data.resultId});
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -69,8 +71,9 @@ Page({
 
   loadRecordItems: function(){
     let that = this;
+    let sign = md5("getTestRecords" + this.data.resultId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getTestRecords?result_id=${this.data.resultId}`,
+      url: `${config.serverRoot}/getTestRecords?result_id=${this.data.resultId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         let recordItems = res.data;
         let wrongRecordItems = [];

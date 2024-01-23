@@ -5,25 +5,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.listItem{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
-  border: 1rpx solid silver;
-}
-
-.listItem .small{
-  width: 30rpx;
-  height: 30rpx;
-  margin: 0 15rpx;
-}
-
-.listItem text{
-  font-size: 30rpx;
-  flex-grow: 1;
-}

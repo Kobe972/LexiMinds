@@ -1,5 +1,6 @@
 // pages/test_results/test_results.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -73,8 +74,9 @@ Page({
     let p_submission_time_end = this.data.submission_time_end;
     if(p_submission_time_end != "") p_submission_time_end += " 23:59:59";
     let that = this;
+    let sign = md5("getTestResults" + p_submission_time_end + p_submission_time_start + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getTestResults?submission_time_start=${p_submission_time_start}&submission_time_end=${p_submission_time_end}&uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getTestResults?submission_time_start=${p_submission_time_start}&submission_time_end=${p_submission_time_end}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         let resultList = res.data;
         for(var i = 0; i < resultList.length; i++)

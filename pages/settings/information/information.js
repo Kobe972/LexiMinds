@@ -1,6 +1,6 @@
 // pages/settings/information/information.js
 const config = require('../../../utils/config.js');
-
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -21,8 +21,9 @@ Page({
    */
   onLoad(options) {
     let that = this;
+    let sign = md5("getUserInfo" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getUserInfo?openid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getUserInfo?openid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         let avatarUrl = res.data[0].avatarUrl;
         that.setData({avatarUrl_converted: avatarUrl});
@@ -112,12 +113,11 @@ Page({
   sendSMSCode: function(){
     if(this.data.phoneNumber.length == 11)
     {
-      let openid = wx.getStorageSync('user').openid;
       let that = this;
       wx.request({
         url: `${config.serverRoot}/sendSMSCode`,
         method: 'POST',
-        data: {openid: openid, phone: this.data.phoneNumber},
+        data: {phone: this.data.phoneNumber},
         success: function(res){
           if(res.data.body.code == "OK")
           {
@@ -178,10 +178,11 @@ Page({
   onSave: function()
   {
     let that = this;
+    let sign = md5("updateUserInfo" + this.data.avatarUrl_converted + this.data.code + this.data.nickName + this.data.phoneNumber + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/updateUserInfo`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, avatarUrl: this.data.avatarUrl_converted, nickName: this.data.nickName, phone: this.data.phoneNumber, code: this.data.code},
+      data: {uid: wx.getStorageSync('user').openid, avatarUrl: this.data.avatarUrl_converted, nickName: this.data.nickName, phone: this.data.phoneNumber, code: this.data.code, sign: sign},
       success: function(res){
         wx.navigateBack();
         wx.showToast({

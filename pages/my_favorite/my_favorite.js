@@ -1,5 +1,6 @@
 // pages/my_favorite/my_favorite.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -48,7 +49,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.onLoad();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -67,8 +69,9 @@ Page({
 
   loadRecordItems: function(){
     let that = this;
+    let sign = md5("getFavorWordsByUserId" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getFavorWordsByUserId?uid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getFavorWordsByUserId?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         let recordItems = res.data;
         for(var i = 0; i < recordItems.length; i++)

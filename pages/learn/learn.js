@@ -1,5 +1,6 @@
 // pages/learn/learn.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 const audio = wx.createInnerAudioContext();
 Page({
 
@@ -77,9 +78,9 @@ Page({
 
   getWordList: function () {
     var that = this;
-
+    let sign = md5("getWordsByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
         console.log(res.data);
@@ -100,10 +101,11 @@ Page({
 
   next: function()
   {
+    let sign = md5("insertLearningOrReviewRecord"  +this.data.wordList[this.data.index].id + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/insertLearningOrReviewRecord`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id}
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, sign: sign}
     });
     if(this.data.index < this.data.wordList.length - 1)
     {
@@ -131,10 +133,11 @@ Page({
 
   finish: function()
   {
+    let sign = md5("insertLearningOrReviewRecord"  +this.data.wordList[this.data.index].id + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/insertLearningOrReviewRecord`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id}
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, sign: sign}
     });
     wx.navigateBack();
   },
@@ -142,8 +145,9 @@ Page({
   getWordMarks: function()
   {
     let that = this;
+    let sign = md5("getWordMarkByContentId"  +this.data.wordList[this.data.index].id + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getWordMarkByContentId?uid=${wx.getStorageSync('user').openid}&content_id=${this.data.wordList[this.data.index].id}`,
+      url: `${config.serverRoot}/getWordMarkByContentId?uid=${wx.getStorageSync('user').openid}&content_id=${this.data.wordList[this.data.index].id}&sign=${sign}`,
       success: function(res){
         let favored = false;
         let notes = "";
@@ -163,7 +167,7 @@ Page({
     wx.request({
       url: `${config.serverRoot}/updateWordMarkByContentId`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "favor", value: this.data.is_favored}
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "favor", value: this.data.is_favored, sign: sign}
     });
   },
 
@@ -181,10 +185,11 @@ Page({
 
   change_note: function()
   {
+    let sign = md5("updateWordMarkByContentId"  +this.data.wordList[this.data.index].id + "note" + wx.getStorageSync('user').openid + this.data.notes + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/updateWordMarkByContentId`,
       method: 'POST',
-      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "note", value: this.data.notes}
+      data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "note", value: this.data.notes, sign: sign}
     });
   },
 })

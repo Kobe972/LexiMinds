@@ -1,5 +1,6 @@
 // pages/my/my.js
 const config = require('../../utils/config.js');
+const md5 = require('blueimp-md5');
 Page({
 
   /**
@@ -24,8 +25,9 @@ Page({
    */
   onLoad(options) {
     let that = this;
+    let sign = md5("getUserInfo" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getUserInfo?openid=${wx.getStorageSync('user').openid}`,
+      url: `${config.serverRoot}/getUserInfo?openid=${wx.getStorageSync('user').openid}&sign=${sign}`,
       success: function(res){
         if(res.data.length > 0)
         {
@@ -41,6 +43,11 @@ Page({
         }
       }
     });
+  },
+
+  onPullDownRefresh: function() {
+    this.onLoad(null);
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -68,13 +75,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
 
   },
 
