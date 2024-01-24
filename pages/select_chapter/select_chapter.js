@@ -1,13 +1,15 @@
 // pages/select_chapter/select_chapter.js
 const config = require('../../utils/config.js');
 const md5 = require('blueimp-md5');
+import Dialog from '../../vant-weapp/dist/dialog/dialog';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    show_download_dialog: false
   },
 
   /**
@@ -109,14 +111,42 @@ Page({
     }
   },
 
-  downloadBook: function() {
-    let sign = md5("generateBookPdf" + this.data.bookId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+  getDownloadLink: function() {
+    let sign = md5("getBookDownloadLink" + this.data.bookId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+    let that = this;
+    wx.request({
+      url: `${config.serverRoot}/getBookDownloadLink?bookId=${this.data.bookId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
+      method: 'GET',
+      success: function(res) {
+        if(res.data.msg == 'success') {
+          that.setData({link: res.data.link, full_link: `${config.serverRoot}/generateBookPdf?link=${res.data.link}`, show_download_dialog: true});
+        }
+        else
+        {
+          wx.showModal({
+            title: '下载失败',
+            content: res.data.msg,
+            showCancel: false
+          });
+        }
+      },
+      fail: function(res) {
+        wx.showModal({
+          title: '下载失败',
+          content: res.errno,
+          showCancel: false
+        });
+      }
+    });
+  },
+
+  downloadByLink: function () {
     wx.showLoading({
       title: '正在下载',
       mask: true
     })
     wx.downloadFile({
-      url: `${config.serverRoot}/generateBookPdf?bookId=${this.data.bookId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
+      url: `${config.serverRoot}/generateBookPdf?link=${this.data.link}`,
       success: function (res) {
         wx.hideLoading();
         const filePath = res.tempFilePath
@@ -132,6 +162,23 @@ Page({
           icon: 'error',
           duration: 2000,
           mask: true
+        })
+      }
+    });
+  },
+
+  copyDownloadLink: function() {
+    wx.setClipboardData({
+      data: this.data.full_link,
+      success: function(res) {
+        wx.showToast({
+          title: '已复制到剪切板'
+        });
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'error'
         })
       }
     });
