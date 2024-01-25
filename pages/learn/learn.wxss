@@ -172,3 +172,12 @@ van-button{
 .favorites{
   flex-grow: 1;
 }
+.show_detail {
+  display: flex;
+  flex-direction: row;
+}
+.show_detail text {
+  color:gray;
+  flex-grow: 1;
+  margin-bottom: 0.5cm;
+}

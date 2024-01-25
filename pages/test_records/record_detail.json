@@ -1,6 +1,5 @@
 {
   "usingComponents": {
     "van-button": "/vant-weapp/dist/button/index"
-  },
-  "enablePullDownRefresh": true
+  }
 }

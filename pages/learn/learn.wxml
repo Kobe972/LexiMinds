@@ -10,52 +10,59 @@
     <text>{{wordList[index].vocal}}</text>
     <image class="icon" src="/images/sound.png" wx:if="{{wordList[index].vocal != null}}" bindtap="play_audio"></image>
   </view>
-  <view class="wordPicture" wx:if="{{wordList[index].image_url != null}}">
-    <image src="{{serverRoot + wordList[index].image_url}}" wx:if="{{wordList[index].image_url[0]}}=='/'" mode="aspectFill"></image>
-    <image src="{{wordList[index].image_url}}" mode="aspectFill" wx:else></image>
+  <view class="show_detail">
+    <text>展示详情</text>
+    <van-switch checked="{{ show_detail }}" size="22px" bind:change="onChangeSwitch" />
   </view>
+  <view wx:if = "{{ show_detail }}">
+    <view class="wordPicture" wx:if="{{wordList[index].image_url != null}}">
+      <image src="{{serverRoot + wordList[index].image_url}}" wx:if="{{wordList[index].image_url[0]}}=='/'" mode="aspectFill"></image>
+      <image src="{{wordList[index].image_url}}" mode="aspectFill" wx:else></image>
+    </view>
   
-  <view class="translationBox">
-    <view class="label">
-      <text>释义</text>
+    <view class="translationBox">
+      <view class="label">
+        <text>释义</text>
+      </view>
+      <view class="translation">
+        <text>{{wordList[index].translation}}</text>
+      </view>
     </view>
-    <view class="translation">
-      <text>{{wordList[index].translation}}</text>
+    <view class="examplesBox" wx:if="{{wordList[index].examples != null}}">
+      <view class="label">
+        <text>示例</text>
+      </view>
+      <view class="examples">
+        <text>{{wordList[index].examples}}</text>
+      </view>
     </view>
-  </view>
-  <view class="examplesBox" wx:if="{{wordList[index].examples != null}}">
-    <view class="label">
-      <text>示例</text>
+    <view class="memoryBox" wx:if="{{wordList[index].fast_memory != null}}">
+      <view class="label">
+        <text>速记</text>
+      </view>
+      <view class="memory">
+        <text>{{wordList[index].fast_memory}}</text>
+      </view>
     </view>
-    <view class="examples">
-      <text>{{wordList[index].examples}}</text>
+    <view class="noteBox" wx:if="{{notes != ''}}">
+      <view class="label">
+        <text>笔记</text>
+      </view>
+      <view class="noteContent">
+        <text>{{notes}}</text>
+      </view>
     </view>
-  </view>
-  <view class="memoryBox" wx:if="{{wordList[index].fast_memory != null}}">
-    <view class="label">
-      <text>速记</text>
     </view>
-    <view class="memory">
-      <text>{{wordList[index].fast_memory}}</text>
+  
+    <view class="marks">
+      <view class="favorites">
+        <van-button plain icon="star-o" type="info" size="mini" bind:click="change_favor" wx:if="{{!is_favored}}">收藏</van-button>
+        <van-button plain icon="star" type="info" size="mini" bind:click="change_favor" wx:else>取消收藏</van-button>
+      </view>
+      <view class="note">
+        <van-button plain type="info" size="mini" bind:click="onClickShow">笔记</van-button>
+      </view>
     </view>
-  </view>
-  <view class="noteBox" wx:if="{{notes != ''}}">
-    <view class="label">
-      <text>笔记</text>
-    </view>
-    <view class="noteContent">
-      <text>{{notes}}</text>
-    </view>
-  </view>
-  <view class="marks">
-    <view class="favorites">
-      <van-button plain icon="star-o" type="info" size="mini" bind:click="change_favor" wx:if="{{!is_favored}}">收藏</van-button>
-      <van-button plain icon="star" type="info" size="mini" bind:click="change_favor" wx:else>取消收藏</van-button>
-    </view>
-    <view class="note">
-      <van-button plain type="info" size="mini" bind:click="onClickShow">笔记</van-button>
-    </view>
-  </view>
   <view class="margin">
     <image></image>
   </view>

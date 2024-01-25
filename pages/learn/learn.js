@@ -11,7 +11,8 @@ Page({
     serverRoot: config.serverRoot,
     is_favored: false,
     notes: "",
-    show_edit_note: false
+    show_edit_note: false,
+    show_detail: true
   },
 
   /**
@@ -192,4 +193,8 @@ Page({
       data: {uid: wx.getStorageSync('user').openid, content_id: this.data.wordList[this.data.index].id, type: "note", value: this.data.notes, sign: sign}
     });
   },
+
+  onChangeSwitch: function({ detail }) {
+    this.setData({show_detail: detail})
+  }
 })
