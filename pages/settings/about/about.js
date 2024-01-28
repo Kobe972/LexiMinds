@@ -1,11 +1,12 @@
 // pages/settings/about/about.js
+const config = require('../../../utils/config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    serverRoot: config.serverRoot
   },
 
   /**
