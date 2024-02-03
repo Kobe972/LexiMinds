@@ -83,14 +83,9 @@
   justify-content: center;
   width: 100%;
 }
-.control button{
-  width: fit-content;
-  border-radius: 50%;
-  background-color: deepskyblue;
-  color: whitesmoke;
-}
 .prev{
   margin-left: 0.5cm;
+  flex-grow: 1;
 }
 .next{
   margin-right: 0.5cm;

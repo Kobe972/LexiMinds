@@ -5,4 +5,25 @@
       <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
     </view>
   </van-cell-group>
+  <van-cell-group title="选项">
+    <van-cell title="下载错题集" bind:click="getDownloadLink"></van-cell>
+    <van-cell title="错题集测评" bind:click="evaluate"></van-cell>
+  </van-cell-group>
+  <van-dialog
+    use-slot
+    title="是否小程序内下载？"
+    show="{{show_download_dialog}}"
+    show-cancel-button
+    bind:confirm="downloadByLink"
+  >
+    <view class="dialog-slot">
+      <text>小程序下载上限为50MB，超过上限请复制以下链接到浏览器端下载</text>
+      <view class="download-link">
+        <view class="link_container">
+          <text class="small_text">{{full_link}}</text>
+        </view>
+        <van-button icon="notes-o" type="default" size="mini" hairline bind:click="copyDownloadLink" />
+      </view>
+    </view>
+  </van-dialog>
 </view>

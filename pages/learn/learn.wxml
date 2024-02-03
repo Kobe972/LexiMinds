@@ -86,7 +86,7 @@
   />
 </van-dialog>
 <view class="control">
-    <button class="prev" bindtap="prev" wx:if="{{index>0}}">{{"<"}}</button>
-    <button class="next" bindtap="next" wx:if="{{index < wordList.length - 1}}">{{">"}}</button>
-    <button class="finish" bindtap="finish" wx:else>{{"√"}}</button>
+    <van-button class="prev" bindtap="prev" wx:if="{{index>0}}" icon="arrow-left" round></van-button>
+    <van-button class="next" bindtap="next" wx:if="{{index < wordList.length - 1}}" icon="arrow" round></van-button>
+    <van-button class="finish" bindtap="finish" wx:else icon="success" round></van-button>
 </view>

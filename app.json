@@ -34,33 +34,8 @@
       "pages/settings/about/about",
       "pages/my_favorite/my_favorite",
       "pages/my_note/my_note",
-      "pages/my_notification/my_notification"
-    ]
-  },
-  "mini-android": {
-    "pages": [
-      "pages/index/index",
-      "pages/logs/logs",
-      "pages/test/test",
-      "pages/dictation/dictation",
-      "pages/my/my",
-      "pages/select_book_for_learn/select_book_for_learn",
-      "pages/select_chapter/select_chapter",
-      "pages/learn/learn",
-      "pages/dictation/test",
-      "pages/test/start_test",
-      "pages/settings/settings",
-      "pages/settings/information/information",
-      "pages/test_results/test_results",
-      "pages/test_records/test_records",
-      "pages/test_records/record_detail",
-      "pages/wrong_records/wrong_records",
-      "pages/learning_records/learning_records",
-      "pages/learning_records/record_details",
-      "pages/donutlogin/donutlogin",
-      "pages/single_word/single_word",
-      "pages/wrong_records/record_detail",
-      "pages/settings/about/about"
+      "pages/my_notification/my_notification",
+      "pages/wrong_records/test_wrong_record"
     ]
   },
   "pages": [
@@ -87,7 +62,8 @@
     "pages/settings/about/about",
     "pages/my_favorite/my_favorite",
     "pages/my_note/my_note",
-    "pages/my_notification/my_notification"
+    "pages/my_notification/my_notification",
+    "pages/wrong_records/test_wrong_record"
   ],
   "window": {
     "navigationBarTextStyle": "black",

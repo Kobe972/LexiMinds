@@ -21,10 +21,11 @@ Page({
   onLoad(options) {
     this.setData({index: 0, chapterId: options.chapterId});
     this.getWordList();
+    let sign = md5("setClockIn" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/setClockIn`,
       method: "POST",
-      data: {uid: wx.getStorageSync('user').openid}
+      data: {uid: wx.getStorageSync('user').openid, sign: sign}
     });
   },
 

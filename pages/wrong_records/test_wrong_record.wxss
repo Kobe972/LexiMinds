@@ -1,4 +1,4 @@
-/* pages/dictation/test.wxss */
+/* pages/wrong_records/test_wrong_record.wxss */
 .container{
   height: 100vh;
   background-color: #EEEEEE;

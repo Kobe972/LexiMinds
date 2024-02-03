@@ -1,4 +1,4 @@
-const serverRoot = 'http://60.205.179.213';
+const serverRoot = 'http://leximinds.com';
 module.exports = {
   serverRoot: serverRoot
 }

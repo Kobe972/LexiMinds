@@ -1,6 +1,7 @@
 // pages/wrong_records/wrong_records.js
 const config = require('../../utils/config.js');
 const md5 = require('blueimp-md5');
+import Dialog from '../../vant-weapp/dist/dialog/dialog';
 Page({
 
   /**
@@ -100,6 +101,93 @@ Page({
     const wordId = e.currentTarget.dataset.wordid;
     wx.navigateTo({
       url: `/pages/wrong_records/record_detail?wordId=${wordId}&record`,
+    });
+  },
+
+  getDownloadLink: function() {
+    let sign = md5("getWrongRecordDownloadLink" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+    let that = this;
+    wx.request({
+      url: `${config.serverRoot}/getWrongRecordDownloadLink?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
+      method: 'GET',
+      success: function(res) {
+        if(res.data.msg == 'success') {
+          that.setData({link: res.data.link, full_link: `${config.serverRoot}/generateWrongRecordPdf?link=${res.data.link}`, show_download_dialog: true});
+        }
+        else
+        {
+          wx.showModal({
+            title: '下载失败',
+            content: res.data.msg,
+            showCancel: false
+          });
+        }
+      },
+      fail: function(res) {
+        wx.showModal({
+          title: '下载失败',
+          content: res.errno,
+          showCancel: false
+        });
+      }
+    });
+  },
+
+  downloadByLink: function () {
+    wx.showLoading({
+      title: '正在下载',
+      mask: true
+    })
+    wx.downloadFile({
+      url: `${config.serverRoot}/generateWrongRecordPdf?link=${this.data.link}`,
+      success: function (res) {
+        wx.hideLoading();
+        const filePath = res.tempFilePath
+        wx.openDocument({
+            filePath: filePath,
+            showMenu: true
+        })
+      },
+      fail: function(res) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '下载失败！',
+          icon: 'error',
+          duration: 2000,
+          mask: true
+        })
+      }
+    });
+  },
+
+  copyDownloadLink: function() {
+    wx.setClipboardData({
+      data: this.data.full_link,
+      success: function(res) {
+        wx.showToast({
+          title: '已复制到剪切板'
+        });
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'error'
+        })
+      }
+    });
+  },
+
+  evaluate: function () {
+    if(this.data.recordItems.length < 4)
+    {
+      wx.showToast({
+        title: '至少需4个错题',
+        icon: 'error'
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: '/pages/wrong_records/test_wrong_record',
     });
   }
 })
