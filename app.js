@@ -9,5 +9,19 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  onShareAppMessage() {
+    const promise = new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          title: 'LexiMinds：更快地背单词！'
+        })
+      }, 2000)
+    })
+    return {
+      title: 'LexiMinds：更快地背单词！',
+      path: '/page/index',
+      promise 
+    }
   }
 })

@@ -14,9 +14,8 @@ Page({
     wx.login({
       //成功放回
       success:(res)=>{
-        let code=res.code;
         wx.request({
-          url: config.serverRoot+'/getOpenId?appid=wx8d575aef47f48989&secret=4a5102802c1f7a700824ae29adfeed0e&js_code=' + res.code,
+          url: config.serverRoot+'/getOpenId?js_code=' + res.code,
           success:(res)=>{
             var obj = {};
             obj.openid = res.data.openid;
@@ -79,5 +78,19 @@ Page({
     wx.navigateTo({
       url: `/pages/select_chapter/select_chapter?bookId=${bookId}&purpose=learn`,
     });
+  },
+  onShareAppMessage() {
+    const promise = new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          title: 'LexiMinds：更快地背单词！'
+        })
+      }, 2000)
+    })
+    return {
+      title: 'LexiMinds：更快地背单词！',
+      path: '/page/index',
+      promise 
+    }
   }
 })
