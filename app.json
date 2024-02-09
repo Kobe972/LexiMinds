@@ -35,7 +35,8 @@
       "pages/my_favorite/my_favorite",
       "pages/my_note/my_note",
       "pages/my_notification/my_notification",
-      "pages/wrong_records/test_wrong_record"
+      "pages/wrong_records/test_wrong_record",
+      "pages/wrong_records/test_results"
     ]
   },
   "pages": [
@@ -63,7 +64,8 @@
     "pages/my_favorite/my_favorite",
     "pages/my_note/my_note",
     "pages/my_notification/my_notification",
-    "pages/wrong_records/test_wrong_record"
+    "pages/wrong_records/test_wrong_record",
+    "pages/wrong_records/test_results"
   ],
   "window": {
     "navigationBarTextStyle": "black",

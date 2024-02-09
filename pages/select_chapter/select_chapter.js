@@ -144,7 +144,7 @@ Page({
     wx.showLoading({
       title: '正在下载',
       mask: true
-    })
+    });
     wx.downloadFile({
       url: `${config.serverRoot}/generateBookPdf?link=${this.data.link}`,
       success: function (res) {

@@ -1,0 +1,8 @@
+<!--pages/wrong_records/test_results.wxml-->
+<view class="container">
+  <van-cell-group title="错误题目 ({{count}})">
+    <view wx:for="{{recordItems}}" wx:key="row{{index}}" >
+      <van-cell wx:if="{{item.truth != item.answer}}" data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+    </view>
+  </van-cell-group>
+</view>

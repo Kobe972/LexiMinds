@@ -193,5 +193,41 @@ Page({
   {
     this.data.problemList[this.data.index].answer = e.detail;
     this.setData({'problemList': this.data.problemList});
+  },
+
+  download: function() {
+    wx.showLoading({
+      title: '正在下载',
+      mask: true
+    });
+    wx.request({
+      url: `${config.serverRoot}/generateFillingTestPdf`,
+      data: this.data.problemList,
+      method: 'POST',
+      responseType: 'arraybuffer',
+      success: function (res) {
+        wx.hideLoading();
+        wx.getFileSystemManager().writeFile({
+          filePath: wx.env.USER_DATA_PATH + "/test.pdf",
+          data: res.data,
+          encoding: "binary",
+          success: res => {
+            wx.openDocument({
+              filePath: wx.env.USER_DATA_PATH + "/test.pdf",
+              showMenu: true
+            })
+          },
+          fail: function(res) {
+            wx.hideLoading();
+            wx.showToast({
+              title: '下载失败！',
+              icon: 'error',
+              duration: 2000,
+              mask: true
+            });
+          }
+        });
+      }
+    });
   }
 })

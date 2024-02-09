@@ -44,7 +44,7 @@
       <text>{{book_name+", "+chapter_name+"\n"}}</text>
     </view>
   </view>
-  <view class="feedback">
+  <view class="feedback" wx:if="{{!hide_enabled}}">
     <van-button plain type="danger" size="mini" bind:click="hideRecord">删除</van-button>
   </view>
 </view>

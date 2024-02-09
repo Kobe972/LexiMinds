@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    serverRoot: config.serverRoot
+    serverRoot: config.serverRoot,
+    hide_enabled: false
   },
 
   /**
@@ -16,6 +17,7 @@ Page({
    */
   onLoad(options) {
     this.setData({wordId: options.wordId, chapterId: options.chapterId});
+    if(options.hide_enabled == "true") this.setData({hide_enabled: true});
     this.getRecordDetail();
   },
 
@@ -44,7 +46,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    this.setData({hide_enabled: false});
   },
 
   /**

@@ -137,6 +137,7 @@ Page({
 
   finish: function()
   {
+    let that = this;
     let correct = 0;
     let success = true;
     for(let i = 0; i < this.data.problemList.length; i++)
@@ -149,7 +150,9 @@ Page({
       showCancel:false,
       complete: (res) => {
         wx.disableAlertBeforeUnload();
-        if(success) wx.navigateBack();
+        if(success) wx.redirectTo({
+          url: `/pages/wrong_records/test_results?recordItems=${JSON.stringify(that.data.problemList)}`
+        });
       }
     })
   },

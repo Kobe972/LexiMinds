@@ -1,0 +1,8 @@
+/* pages/wrong_records/test_results.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.2cm;
+}
