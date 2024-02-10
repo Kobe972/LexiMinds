@@ -59,6 +59,16 @@ Page({
                 } 
               }
             })
+          },
+          fail: function(res) {
+            wx.showModal({
+              title: '网络错误',
+              content: '未能连接到服务器，请检查网络或等待服务器重启',
+              showCancel: false,
+              complete: (res) => {
+                wx.exitMiniProgram();
+              }
+            });
           }
         });
       }

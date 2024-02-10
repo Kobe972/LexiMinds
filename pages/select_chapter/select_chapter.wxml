@@ -4,7 +4,7 @@
     <van-cell title="{{row.name}}" is-link wx:for="{{chapterList}}" wx:for-item='row' wx:key="row{{index}}" bind:click="navigateToNextStep" data-chapterId="{{row.id}}"></van-cell>
   </van-cell-group>
   <van-cell-group title="选项">
-    <van-cell title="下载词书" bind:click="getDownloadLink"></van-cell>
+    <van-cell title="下载词书" label="私有词书不超过4000词可下载" bind:click="getDownloadLink"></van-cell>
   </van-cell-group>
   <van-dialog
     use-slot
