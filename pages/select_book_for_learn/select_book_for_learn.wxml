@@ -1,14 +1,14 @@
 <!--pages/select_book_for_learn/select_book_for_learn.wxml-->
 <van-cell-group title="公共词书 ({{commonBookList.length}})">
   <block wx:for="{{commonBookList}}" wx:key="id">
-    <van-card centered title="{{item.bookname}}" thumb="{{serverRoot + item.avatarURL}}" bindtap="navigateToSelectChapter" data-bookid="{{item.id}}" data-purpose="learn"></van-card>
+    <van-card centered title="{{item.bookname}}" thumb="{{serverRoot + item.avatarURL}}" desc="{{item.description}}" bindtap="navigateToSelectChapter" data-bookid="{{item.id}}" data-purpose="learn"></van-card>
   </block>
 </van-cell-group>
 
 <van-cell-group title="私有词书 ({{privateBookList.length}})" wx:if="{{privateBookList.length > 0}}">
   <block wx:for="{{privateBookList}}" wx:key="id">
     <van-swipe-cell right-width="{{ 65 }}" async-close bind:close="onCloseSwipeCell" data-bookid="{{item.id}}">
-      <van-card centered title="{{item.bookname}}" thumb="{{serverRoot + item.avatarURL}}" bindtap="navigateToSelectChapter" data-bookid="{{item.id}}" data-purpose="learn"></van-card>
+      <van-card centered title="{{item.bookname}}" thumb="{{serverRoot + item.avatarURL}}" desc="{{item.description}}" bindtap="navigateToSelectChapter" data-bookid="{{item.id}}" data-purpose="learn"></van-card>
       <view slot="right" class="van-swipe-cell__right">
         <view type="danger" class="slot_button">删除</view>
       </view>
