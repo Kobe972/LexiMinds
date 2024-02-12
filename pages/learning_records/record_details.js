@@ -126,6 +126,19 @@ Page({
   navigateToDetails: function(e){
     const wordId = e.currentTarget.dataset.wordid;
     const chapterId = e.currentTarget.dataset.chapterid;
+    let contentId = -1;
+    wx.request({
+      url: `${config.serverRoot}/getBookContentIdByWordIdAndChapterId?wordId=${wordId}&chapterId=${chapterId}`,
+      success: function(res) {
+        contentId = res.data.book_content_id;
+        let sign = md5("insertLearningOrReviewRecord"  + contentId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+        wx.request({
+          url: `${config.serverRoot}/insertLearningOrReviewRecord`,
+          method: 'POST',
+          data: {uid: wx.getStorageSync('user').openid, content_id: contentId, sign: sign}
+        });
+      }
+    });
     wx.navigateTo({
       url: `/pages/single_word/single_word?wordId=${wordId}&chapterId=${chapterId}`,
     });
