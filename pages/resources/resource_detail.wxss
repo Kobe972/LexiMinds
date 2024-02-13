@@ -1,0 +1,43 @@
+/* pages/resources/resource_detail.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  padding-top: 0.2cm;
+}
+.title
+{
+  font-size: 22px;
+  align-self: center;
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+}
+.desc
+{
+  margin-bottom: 0.5cm;
+}
+.link-container{
+  display: flex;
+  flex-direction: column;
+}
+.link{
+  font-size: 12px;
+}
+van-button{
+  align-self: center;
+  margin-top: 1cm;
+}
+.uploader
+{
+  font-size: 12px;
+  color: cadetblue;
+}
+.time
+{
+  font-size: 12px;
+  color: cadetblue;
+  margin-bottom: 0.5cm;
+}

@@ -1,0 +1,31 @@
+<!--pages/resources/resour.wxml-->
+<van-tabs bind:change="onTabChange" active="{{active}}">
+  <van-tab title="官方资源">
+    <van-search
+      value="{{ search }}"
+      placeholder="请输入搜索关键词"
+      bind:search="onSearch"
+      bind:change="onChange"
+    />
+    <view wx:if="{{resources.length>0}}">
+      <van-cell title="{{row.title}}" is-link wx:for="{{resources}}" wx:for-item='row' wx:key="row{{index}}" label="{{row.description}}" bind:click="navigateToResourceDetail" data-resourceId="{{row.id}}"></van-cell>
+    </view>
+    <view wx:else>
+      <van-cell-group title="暂无资源"></van-cell-group>
+    </view>
+  </van-tab>
+  <van-tab title="用户资源">
+    <van-search
+      value="{{ search }}"
+      placeholder="请输入搜索关键词"
+      bind:search="onSearch"
+      bind:change="onChange"
+    />
+    <view wx:if="{{resources.length>0}}">
+      <van-cell title="{{row.title}}" is-link wx:for="{{resources}}" wx:for-item='row' wx:key="row{{index}}" label="{{row.description}}" bind:click="navigateToResourceDetail" data-resourceId="{{row.id}}"></van-cell>
+    </view>
+    <view wx:else>
+      <van-cell-group title="暂无资源"></van-cell-group>
+    </view>
+  </van-tab>
+</van-tabs>

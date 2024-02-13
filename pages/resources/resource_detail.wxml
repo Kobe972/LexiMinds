@@ -1,0 +1,12 @@
+<!--pages/resources/resource_detail.wxml-->
+<view class="container">
+  <text class="title">{{resource.title}}</text>
+  <text class="uploader">{{uploader}}</text>
+  <text class="time">{{resource.uploaded_time}}</text>
+  <text class="desc">{{resource.description}}</text>
+  <view class="link-container">
+    <text>下载链接：</text>
+    <text class="link">{{resource.link}}</text>
+  </view>
+  <van-button type="primary" bind:click="copy">复制下载链接</van-button>
+</view>

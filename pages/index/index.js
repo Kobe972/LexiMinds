@@ -80,7 +80,7 @@ Page({
   },
   handleStartNewWords: function () {
     wx.navigateTo({
-      url: '/pages/select_book_for_learn/select_book_for_learn',
+      url: '/pages/select_book/select_book?purpose=learn',
     });
   },
   navigateToSelectChapter: function(e){

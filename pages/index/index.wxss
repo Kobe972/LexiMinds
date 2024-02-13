@@ -91,3 +91,33 @@ van-cell{
   margin-top: 0.5cm;
   background-color: whitesmoke;
 }
+
+.mainpage_middlecard
+{
+  background-color: whitesmoke;
+  margin-top: 0.5cm;
+  margin-left: 0.5cm;
+  margin-right: 0.5cm;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  --grid-item-content-background-color:whitesmoke;
+  --grid-item-content-active-color:#e0e0e0;
+  --grid-item-icon-size: 15px;
+  --grid-item-text-font-size: 8px;
+  --grid-item-content-padding: 5px;
+}
+
+van-grid
+{
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+
+van-grid-item{
+  background-color: whitesmoke;
+  border-radius: 10px;
+  font-size: 10rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-tab": "/vant-weapp/dist/tab/index",
+    "van-tabs": "/vant-weapp/dist/tabs/index",
+    "van-search": "/vant-weapp/dist/search/index",
+    "van-cell": "/vant-weapp/dist/cell/index",
+    "van-cell-group": "/vant-weapp/dist/cell-group/index"
+  },
+  "onReachBottomDistance": 50
+}

@@ -1,0 +1,3 @@
+<!--pages/website/website.wxml-->
+<web-view src="{{serverRoot}}" bindload="bindload" binderror="binderror"></web-view>
+ 

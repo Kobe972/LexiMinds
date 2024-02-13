@@ -15,7 +15,7 @@
       "pages/test/test",
       "pages/dictation/dictation",
       "pages/my/my",
-      "pages/select_book_for_learn/select_book_for_learn",
+      "pages/select_book/select_book",
       "pages/select_chapter/select_chapter",
       "pages/learn/learn",
       "pages/dictation/test",
@@ -45,7 +45,7 @@
     "pages/test/test",
     "pages/dictation/dictation",
     "pages/my/my",
-    "pages/select_book_for_learn/select_book_for_learn",
+    "pages/select_book/select_book",
     "pages/select_chapter/select_chapter",
     "pages/learn/learn",
     "pages/dictation/test",
@@ -65,7 +65,10 @@
     "pages/my_note/my_note",
     "pages/my_notification/my_notification",
     "pages/wrong_records/test_wrong_record",
-    "pages/wrong_records/test_results"
+    "pages/wrong_records/test_results",
+    "pages/resources/resource_list",
+    "pages/resources/resource_detail",
+    "pages/website/website"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -83,16 +86,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/test/test",
+        "pagePath": "pages/resources/resource_list",
         "iconPath": "images/test.png",
         "selectedIconPath": "images/test_filled.png",
-        "text": "单词词测"
-      },
-      {
-        "pagePath": "pages/dictation/dictation",
-        "iconPath": "images/sound.png",
-        "selectedIconPath": "images/sound_filled.png",
-        "text": "单词听写"
+        "text": "资料下载"
       },
       {
         "pagePath": "pages/my/my",

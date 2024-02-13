@@ -17,6 +17,7 @@ Page({
    */
   onLoad(options) {
     this.getcommonBookList();
+    this.setData({purpose: options.purpose});
   },
 
   /**
@@ -106,7 +107,7 @@ Page({
 
   navigateToSelectChapter: function (event) {
     const bookId = event.currentTarget.dataset.bookid;
-    const purpose = event.currentTarget.dataset.purpose;
+    const purpose = this.data.purpose;
 
     wx.navigateTo({
       url: `/pages/select_chapter/select_chapter?bookId=${bookId}&purpose=${purpose}`,
