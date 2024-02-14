@@ -1,0 +1,21 @@
+<!--pages/games/games.wxml-->
+<van-grid clickable column-num="2" border="{{ false }}">
+  <van-grid-item
+    icon="list-switch"
+    link-type="navigateTo"
+    url="/pages/games/wordle"
+    text="Wordle"
+  />
+  <van-grid-item
+    icon="fire-o"
+    link-type="navigateTo"
+    url="/pages/games/solitaire"
+    text="单词接龙"
+  />
+  <van-grid-item
+    icon="records-o"
+    link-type="navigateTo"
+    url="/pages/games/vocabulary"
+    text="词汇量评估"
+  />
+</van-grid>

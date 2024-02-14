@@ -1,0 +1,94 @@
+<!--pages/games/wordle.wxml-->
+<view class="container">
+  <view class="options">
+    <van-icon bind:tap="show_about" name="question-o" />
+    <text>WORDLE</text>
+    <van-icon bind:tap="show_statistics" name="bar-chart-o" />
+  </view>
+  <van-divider />
+  <view class="wordle">
+    <view class="wordle_row" wx:for="{{wordle_lines}}" wx:for-item="wordle_line" wx:for-index="i">
+      <view class="wordle_item" wx:for="{{wordle_line}}" wx:for-index="j"  style="background-color: {{feedback[i][j]}};"><text>{{item}}</text></view>
+    </view>
+  </view>
+  <van-button type="danger" class="restart-btn" bind:click="restart">重开</van-button>
+  <view class="keyboard_row">
+    <van-button size="small" type="info" data-value="Q" bind:click="input">Q</van-button>
+    <van-button size="small" type="info" data-value="W" bind:click="input">W</van-button>
+    <van-button size="small" type="info" data-value="E" bind:click="input">E</van-button>
+    <van-button size="small" type="info" data-value="R" bind:click="input">R</van-button>
+    <van-button size="small" type="info" data-value="T" bind:click="input">T</van-button>
+    <van-button size="small" type="info" data-value="Y" bind:click="input">Y</van-button>
+    <van-button size="small" type="info" data-value="U" bind:click="input">U</van-button>
+    <van-button size="small" type="info" data-value="I" bind:click="input">I</van-button>
+    <van-button size="small" type="info" data-value="O" bind:click="input">O</van-button>
+    <van-button size="small" type="info" data-value="P" bind:click="input">P</van-button>
+  </view>
+  <view class="keyboard_row">
+    <van-button size="small" type="info" data-value="A" bind:click="input">A</van-button>
+    <van-button size="small" type="info" data-value="S" bind:click="input">S</van-button>
+    <van-button size="small" type="info" data-value="D" bind:click="input">D</van-button>
+    <van-button size="small" type="info" data-value="F" bind:click="input">F</van-button>
+    <van-button size="small" type="info" data-value="G" bind:click="input">G</van-button>
+    <van-button size="small" type="info" data-value="H" bind:click="input">H</van-button>
+    <van-button size="small" type="info" data-value="J" bind:click="input">J</van-button>
+    <van-button size="small" type="info" data-value="K" bind:click="input">K</van-button>
+    <van-button size="small" type="info" data-value="L" bind:click="input">L</van-button>
+  </view>
+  <view class="keyboard_row">
+    <van-button size="small" type="primary" bind:click="confirm">ENTER</van-button>
+    <van-button size="small" type="info" data-value="Z" bind:click="input">Z</van-button>
+    <van-button size="small" type="info" data-value="X" bind:click="input">X</van-button>
+    <van-button size="small" type="info" data-value="C" bind:click="input">C</van-button>
+    <van-button size="small" type="info" data-value="V" bind:click="input">V</van-button>
+    <van-button size="small" type="info" data-value="B" bind:click="input">B</van-button>
+    <van-button size="small" type="info" data-value="N" bind:click="input">N</van-button>
+    <van-button size="small" type="info" data-value="M" bind:click="input">M</van-button>
+    <van-button size="small" icon="cross" type="danger" bind:click="backspace"></van-button>
+  </view>
+</view>
+<van-popup
+  show="{{ show_about }}"
+  round
+  position="bottom"
+  custom-style="padding: 0.5cm; display: flex; flex-direction: column;"
+  bind:close="onClose"
+>
+  <view class="row">
+    <text>你有六次机会猜一个单词，每次输入五个字母构成的单词，点击ENTER后，反馈如下：</text>
+  </view>
+  <view class="row">
+    <view class="wordle_item" style="background-color: gray;"><text>A</text></view>字母A不存在
+  </view>
+  <view class="row">
+    <view class="wordle_item" style="background-color: orange;"><text>A</text></view>字母A存在但位置错误
+  </view>
+  <view class="row">
+    <view class="wordle_item" style="background-color: green;"><text>A</text></view>字母A存在且在正确位置上
+  </view>
+  <view class="row">
+    <text>六次机会用尽前猜到完整的单词游戏获胜。</text>
+  </view>
+</van-popup>
+<van-popup
+  show="{{ show_statistics }}"
+  round
+  position="bottom"
+  custom-style="padding: 0.5cm; display: flex; flex-direction: column;"
+  bind:close="onClose"
+>
+  <view class="statistics-row">
+    <view class="statistics-item">
+      <text>游戏次数</text>
+      <text>{{wordleRecordsCount}}</text>
+    </view>
+    <view class="statistics-item">
+      <text>胜率</text>
+      <text>{{wordleRecordsWinRate}}</text>
+    </view>
+    <view class="statistics-item">
+      <text>平均猜测次数</text>
+      <text>{{wordleRecordsAvgGuess}}</text>
+    </view>
+  </view>
+</van-popup>

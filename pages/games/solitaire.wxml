@@ -1,0 +1,68 @@
+<!--pages/games/solitaire.wxml-->
+<view class="container">
+  <view class="options">
+    <van-icon bind:tap="show_about" name="question-o" />
+    <text>单词接龙</text>
+    <van-icon bind:tap="show_statistics" name="bar-chart-o" />
+  </view>
+  <van-divider />
+  <scroll-view class="solitaire" wx:if="{{started == 1}}">
+    <view class="solitaire_row">
+      <text style="color: darkslategrey; font-size: small;">剩余时间：{{countdown}}s</text>
+    </view>
+    <view class="solitaire_row" wx:for="{{dragon}}">
+      <text>{{item}}</text>
+    </view>
+    <view class="solitaire_row" wx:if="{{dragon.length > 0 && finished == 0}}">
+      <text>{{prompt}}</text>
+      <input bindconfirm="confirm" value="{{input_value}}"></input>
+    </view>
+  </scroll-view>
+  <van-button type="danger" class="restart-btn" bind:click="restart" wx:if="{{started==1}}">重开</van-button>
+  <van-button type="primary" class="restart-btn" bind:click="start" wx:else>开始</van-button>
+</view>
+<van-popup
+  show="{{ show_about }}"
+  round
+  position="bottom"
+  custom-style="padding: 0.5cm; display: flex; flex-direction: column;"
+  bind:close="onClose"
+>
+  <view class="row">
+    <text>你和对手依次发送一个单词，对手先来，在规定时间内没有发出有效单词的判负。有效单词满足如下条件：</text>
+  </view>
+  <view class="row">
+    <text>1、必须是英语中存在的单词</text>
+  </view>
+  <view class="row">
+    <text>2、单词首字母和上一个词最后一个字母相同</text>
+  </view>
+  <view class="row">
+    <text>3、双方之前均为发过此单词</text>
+  </view>
+  <view class="row">
+    <text>如果对手词穷或游戏进行达到200轮，则自动判胜</text>
+  </view>
+</van-popup>
+<van-popup
+  show="{{ show_statistics }}"
+  round
+  position="bottom"
+  custom-style="padding: 0.5cm; display: flex; flex-direction: column;"
+  bind:close="onClose"
+>
+  <view class="statistics-row">
+    <view class="statistics-item">
+      <text>游戏次数</text>
+      <text>{{solitaireRecordsCount}}</text>
+    </view>
+    <view class="statistics-item">
+      <text>胜率</text>
+      <text>{{solitaireRecordsWinRate}}</text>
+    </view>
+    <view class="statistics-item">
+      <text>平均比赛轮数</text>
+      <text>{{solitaireRecordsAvgRound}}</text>
+    </view>
+  </view>
+</van-popup>

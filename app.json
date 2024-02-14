@@ -36,7 +36,14 @@
       "pages/my_note/my_note",
       "pages/my_notification/my_notification",
       "pages/wrong_records/test_wrong_record",
-      "pages/wrong_records/test_results"
+      "pages/wrong_records/test_results",
+      "pages/resources/resource_list",
+      "pages/resources/resource_detail",
+      "pages/website/website",
+      "pages/games/games",
+      "pages/games/wordle",
+      "pages/games/solitaire",
+      "pages/games/vocabulary"
     ]
   },
   "pages": [
@@ -68,7 +75,11 @@
     "pages/wrong_records/test_results",
     "pages/resources/resource_list",
     "pages/resources/resource_detail",
-    "pages/website/website"
+    "pages/website/website",
+    "pages/games/games",
+    "pages/games/wordle",
+    "pages/games/solitaire",
+    "pages/games/vocabulary"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -90,6 +101,12 @@
         "iconPath": "images/test.png",
         "selectedIconPath": "images/test_filled.png",
         "text": "资料下载"
+      },
+      {
+        "pagePath": "pages/games/games",
+        "iconPath": "images/puzzle.png",
+        "selectedIconPath": "images/puzzle_filled.png",
+        "text": "趣味游戏"
       },
       {
         "pagePath": "pages/my/my",

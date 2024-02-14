@@ -1,0 +1,4 @@
+/* pages/games/games.wxss */
+Page{
+  background-color:white;
+}

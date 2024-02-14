@@ -1,0 +1,68 @@
+/* pages/games/solitaire.wxss */
+Page{
+  background-color:white;
+}
+.container{
+  height: 100vh;
+  background-color:white;
+  display: flex;
+  flex-direction: column;
+}
+.keyboard_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  --button-small-min-width: 30px;
+}
+van-button {
+  margin: 1px;
+}
+.solitaire_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.solitaire {
+  margin-bottom: 0.5cm;
+}
+.restart-btn {
+  align-self: center;
+  margin-bottom: 0.5cm;
+}
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1cm;
+}
+.options text {
+  margin-left: 30%;
+  margin-right: 30%;
+  font-size: 20px;
+  font-weight: 600;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.statistics-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.statistics-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+input {
+  border:none;
+  border-bottom:2px solid #eee;
+  width: 100px;
+}
