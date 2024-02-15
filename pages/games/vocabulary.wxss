@@ -1,1 +1,131 @@
 /* pages/games/vocabulary.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+  padding-top: 0.2cm;
+}
+.container_before{
+  height: 100vh;
+  background-color:white;
+  display: flex;
+  flex-direction: column;
+}
+.progress{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.progress text{
+  font-size: 30rpx;
+}
+.english{
+  margin-bottom: 0.2cm;
+}
+.english text{
+  font-size: 40rpx;
+  font-weight: 1000;
+}
+.control{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0.5cm;
+  justify-content: center;
+  width: 100%;
+}
+.prev{
+  margin-left: 0.5cm;
+  flex-grow: 1;
+}
+.next{
+  margin-right: 0.5cm;
+}
+.finish{
+  margin-right: 0.5cm;
+}
+
+radio-group{
+  display: flex;
+  flex-direction: column;
+}
+radio{
+  margin-bottom: 0.5cm;
+}
+radio .wx-radio-input,
+checkbox .wx-checkbox-input{
+  align-self: baseline;
+  flex: none;
+}
+.keyboard_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  --button-small-min-width: 30px;
+}
+van-button {
+  margin: 1px;
+}
+.wordle_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.wordle {
+  margin-bottom: 0.5cm;
+}
+.wordle_item {
+  width: 1cm;
+  height: 1cm;
+  border-width: 2px;
+  border-color: darkgrey;
+  border-style: solid;
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wordle_item text {
+  text-align: center;
+  font-size: 20px;
+}
+.start-btn {
+  align-self: center;
+  margin-bottom: 0.5cm;
+}
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1cm;
+}
+.options text {
+  margin-left: 30%;
+  margin-right: 30%;
+  font-size: 20px;
+  font-weight: 600;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.statistics-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.statistics-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
