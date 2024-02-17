@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    serverRoot: config.serverRoot
+    serverRoot: config.serverRoot,
+    dictation: false
   },
 
   /**
@@ -143,9 +144,9 @@ Page({
     {
       if(this.data.problemList[i].truth == this.data.problemList[i].answer) correct++;
     }
-    let sign = md5("postDictationResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
+    let sign = md5("postTranslationChoosingResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/postDictationResult`,
+      url: `${config.serverRoot}/postTranslationChoosingResult`,
       method: 'POST',
       data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid, sign: sign},
       fail: function(err){
@@ -211,5 +212,9 @@ Page({
         });
       }
     });
+  },
+
+  onChangeSwitch: function({ detail }) {
+    this.setData({dictation: detail})
   }
 })

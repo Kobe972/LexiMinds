@@ -27,7 +27,7 @@
       </view>
       <van-divider customStyle="border-color: #1989fa; margin-top: 0; margin-bottom:0"></van-divider>
       <scroll-view scroll-y class="body">
-        <view class="tr" wx:for="{{resultList}}" wx:key="row{{index}}" data-resultId="{{item.id}}" bind:tap="navigateToRecords">
+        <view class="tr" wx:for="{{resultList}}" wx:key="row{{index}}" data-resultId="{{item.id}}" data-type="{{item.type}}" bind:tap="navigateToRecords">
           <view class="td">
             <text>{{item.type}}</text>
           </view>

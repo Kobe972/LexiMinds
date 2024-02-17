@@ -3,6 +3,13 @@
   <view class="progress">
     <text>{{index + 1}}/{{problemList.length}}</text>
   </view>
+  <view class="show_detail">
+    <text>听力模式</text>
+    <van-switch checked="{{ dictation }}" size="22px" bind:change="onChangeSwitch" />
+  </view>
+  <view class="english" wx:if="{{!dictation}}">
+    <text>{{problemList[index].english}}</text>
+  </view>
   <view class="vocal">
     <image class="icon" src="/images/sound.png" bindtap="play_audio"></image>
   </view>

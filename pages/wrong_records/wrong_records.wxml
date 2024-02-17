@@ -2,7 +2,7 @@
 <view class="container">
   <van-cell-group title="错题集 ({{recordItems.length}})">
     <view wx:for="{{recordItems}}" wx:key="row{{index}}" >
-      <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
+      <van-cell data-wordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" label="{{item.occurrence}}" style="--cell-label-color: red" bind:tap="navigateToDetails" />
     </view>
   </van-cell-group>
   <van-cell-group title="选项">

@@ -1,5 +1,4 @@
-// const serverRoot = 'https://leximinds.com';
-const serverRoot = 'https://127.0.0.1';
+const serverRoot = 'https://leximinds.com';
 module.exports = {
   serverRoot: serverRoot
 }

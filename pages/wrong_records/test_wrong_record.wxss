@@ -17,6 +17,13 @@
 .progress text{
   font-size: 30rpx;
 }
+.english{
+  margin-bottom: 0.2cm;
+}
+.english text{
+  font-size: 40rpx;
+  font-weight: 1000;
+}
 .vocal{
   margin-bottom: 0.5cm;
   display: flex;
@@ -57,4 +64,13 @@ radio .wx-radio-input,
 checkbox .wx-checkbox-input{
   align-self: baseline;
   flex: none;
+}
+.show_detail {
+  display: flex;
+  flex-direction: row;
+}
+.show_detail text {
+  color:gray;
+  flex-grow: 1;
+  margin-bottom: 0.5cm;
 }

@@ -1,4 +1,4 @@
-/* pages/dictation/test.wxss */
+/* pages/test/start_test.wxss */
 .container{
   height: 100vh;
   background-color: #EEEEEE;
@@ -16,6 +16,13 @@
 }
 .progress text{
   font-size: 30rpx;
+}
+.english{
+  margin-bottom: 0.2cm;
+}
+.english text{
+  font-size: 50rpx;
+  font-weight: 1000;
 }
 .vocal{
   margin-bottom: 0.5cm;
@@ -50,11 +57,13 @@ radio-group{
   display: flex;
   flex-direction: column;
 }
-radio{
-  margin-bottom: 0.5cm;
+
+.show_detail {
+  display: flex;
+  flex-direction: row;
 }
-radio .wx-radio-input,
-checkbox .wx-checkbox-input{
-  align-self: baseline;
-  flex: none;
+.show_detail text {
+  color:gray;
+  flex-grow: 1;
+  margin-bottom: 0.5cm;
 }

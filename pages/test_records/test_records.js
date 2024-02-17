@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({resultId: options.resultId});
+    this.setData({resultId: options.resultId, type: options.type});
     this.loadRecordItems();
   },
 
@@ -111,6 +111,93 @@ Page({
     const recordId = e.currentTarget.dataset.recordid;
     wx.navigateTo({
       url: `/pages/test_records/record_detail?recordId=${recordId}`,
+    });
+  },
+
+  go_rating: function() {
+    let sign = md5("startTestResultQueue" + this.data.resultId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+    wx.request({
+      url: `${config.serverRoot}/startTestResultQueue`,
+      method: 'POST',
+      data: {uid: wx.getStorageSync('user').openid, result_id: this.data.resultId, sign: sign},
+      success: function(res) {
+        if(res.data == 'success')
+        {
+          wx.showModal({
+            title: '已排队',
+            content: '正在排队，请稍等片刻！',
+            showCancel: false,
+            complete: (res) => {
+              wx.navigateBack();
+            }
+          });
+        }
+        else
+        {
+          wx.showModal({
+            title: '错误',
+            content: '排队失败，请检测网络，稍后再试',
+            showCancel: false
+          });
+        }
+      },
+      fail: function(err) {
+        wx.showModal({
+          title: '错误',
+          content: '排队失败，请检测网络，稍后再试',
+          showCancel: false
+        });
+      }
+    });
+  },
+
+  delete: function() {
+    let that = this;
+    wx.showModal({
+      title: '确认删除',
+      content: '是否删除结果？此操作不可逆！',
+      complete: (res) => {
+        if (res.cancel) {
+          
+        }
+    
+        if (res.confirm) {
+          let sign = md5("deleteTestResult" + that.data.resultId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+          wx.request({
+            url: `${config.serverRoot}/deleteTestResult`,
+            method: 'POST',
+            data: {uid: wx.getStorageSync('user').openid, result_id: this.data.resultId, sign: sign},
+            success: function(res) {
+              if(res.data == 'success')
+              {
+                wx.showModal({
+                  title: '删除成功',
+                  content: '已删除！可上拉刷新结果表格查看当前记录',
+                  showCancel: false,
+                  complete: (res) => {
+                    wx.navigateBack();
+                  }
+                });
+              }
+              else
+              {
+                wx.showModal({
+                  title: '删除失败',
+                  content: '删除失败！请检测网络设置',
+                  showCancel: false
+                });
+              }
+            },
+            fail: function(err) {
+              wx.showModal({
+                title: '删除失败',
+                content: '删除失败！请检测网络设置',
+                showCancel: false
+              });
+            }
+          });
+        }
+      }
     });
   }
 })

@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    serverRoot: config.serverRoot
+    serverRoot: config.serverRoot,
+    dictation: false
   },
 
   /**
@@ -150,9 +151,9 @@ Page({
     if(this.data.problemList[this.data.index].answer == null) this.data.problemList[this.data.index].answer = '';
     let that = this;
     wx.showLoading({title: "正在上传数据", mask: true});
-    let sign = md5("postTranslationResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
+    let sign = md5("postTranslationFillingResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/postTranslationResult`,
+      url: `${config.serverRoot}/postTranslationFillingResult`,
       data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid, sign: sign},
       method: 'POST',
       success: function (res) {
@@ -229,5 +230,9 @@ Page({
         });
       }
     });
+  },
+
+  onChangeSwitch: function({ detail }) {
+    this.setData({dictation: detail})
   }
 })

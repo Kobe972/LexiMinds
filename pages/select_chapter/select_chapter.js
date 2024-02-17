@@ -97,16 +97,16 @@ Page({
         url: `/pages/learn/learn?chapterId=${chapterId}`,
       });
     }
-    else if(this.data.purpose == 'dictation')
+    else if(this.data.purpose == 'translation_choosing')
     {
       wx.navigateTo({
-        url: `/pages/dictation/test?chapterId=${chapterId}`,
+        url: `/pages/translation_choosing/test?chapterId=${chapterId}`,
       });
     }
-    else if(this.data.purpose == 'test')
+    else if(this.data.purpose == 'translation_filling')
     {
       wx.navigateTo({
-        url: `/pages/test/start_test?chapterId=${chapterId}`,
+        url: `/pages/translation_filling/test?chapterId=${chapterId}`,
       });
     }
   },

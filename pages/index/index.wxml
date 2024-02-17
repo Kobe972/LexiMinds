@@ -23,14 +23,14 @@
       <van-grid-item
         icon="records-o"
         link-type="navigateTo"
-        url="/pages/select_book/select_book?purpose=test"
-        text="单词词测"
+        url="/pages/select_book/select_book?purpose=translation_filling"
+        text="词义填写"
       />
       <van-grid-item
-        icon="service-o"
+        icon="passed"
         link-type="reLaunch"
-        url="/pages/select_book/select_book?purpose=dictation"
-        text="单词听写"
+        url="/pages/select_book/select_book?purpose=translation_choosing"
+        text="词义选择"
       />
     </van-grid>
   </view>

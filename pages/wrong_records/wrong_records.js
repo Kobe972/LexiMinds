@@ -77,6 +77,8 @@ Page({
         let recordItems = res.data;
         for(var i = 0; i < recordItems.length; i++)
         {
+          if(recordItems[i].occurrence > 1) recordItems[i].occurrence = "错" + recordItems[i].occurrence + "次";
+          else recordItems[i].occurrence = "";
           recordItems[i].translation.replace("\r\n", "; ");
           recordItems[i].translation.replace("\n", "; ");
           if(recordItems[i].translation.length > 11)

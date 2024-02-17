@@ -24,7 +24,7 @@
   <van-divider />
   <van-button type="primary" class="start-btn" bind:click="start">开始测试</van-button>
 </view>
-<view class="control">
+<view class="control" wx:if="{{started==1}}">
   <van-button class="prev" bindtap="prev" wx:if="{{index>0}}" icon="arrow-left" round></van-button>
   <van-button class="next" bindtap="next" wx:if="{{index < 99}}" icon="arrow" round></van-button>
   <van-button class="finish" bindtap="finish" wx:else icon="success" round></van-button>

@@ -82,9 +82,10 @@ Page({
         let resultList = res.data;
         for(var i = 0; i < resultList.length; i++)
         {
-          if(resultList[i].type == 'dictation') resultList[i].type = '听写';
-          else if(resultList[i].type == 'test') resultList[i].type = '词测';
+          if(resultList[i].type == 'translation_choosing') resultList[i].type = '词义选择';
+          else if(resultList[i].type == 'translation_filling') resultList[i].type = '词义填写';
           if(resultList[i].accuracy == -1) resultList[i].accuracy = '排队中';
+          else if(resultList[i].accuracy == -1.5) resultList[i].accuracy = '未评测';
           else if(resultList[i].accuracy == -0.5) resultList[i].accuracy = '评分中';
           else resultList[i].accuracy = resultList[i].accuracy.toFixed(2);
         }
@@ -109,8 +110,9 @@ Page({
 
   navigateToRecords: function(e){
     const resultId = e.currentTarget.dataset.resultid;
+    const type = e.currentTarget.dataset.type;
     wx.navigateTo({
-      url: `/pages/test_records/test_records?resultId=${resultId}`,
+      url: `/pages/test_records/test_records?resultId=${resultId}&type=${type}`,
     });
   }
 })

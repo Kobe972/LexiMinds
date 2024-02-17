@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    serverRoot: config.serverRoot
+    serverRoot: config.serverRoot,
+    dictation: false
   },
 
   /**
@@ -162,5 +163,9 @@ Page({
     const value = e.detail.value;
     this.data.problemList[this.data.index].answer = value;
     this.setData({'problemList': this.data.problemList});
+  },
+
+  onChangeSwitch: function({ detail }) {
+    this.setData({dictation: detail})
   }
 })
