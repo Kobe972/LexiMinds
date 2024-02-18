@@ -12,7 +12,8 @@ Page({
     cur_y: 0,
     feedback: [["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""]],
     show_about: false,
-    show_statistics: false
+    show_statistics: false,
+    finished: false
   },
 
   /**
@@ -79,6 +80,7 @@ Page({
   },
 
   input: function(event) {
+    if(this.data.finished) return;
     const value = event.currentTarget.dataset.value;
     if(this.data.cur_y < this.data.wordle_lines[0].length && this.data.cur_x < this.data.wordle_lines.length)
     {
@@ -97,6 +99,7 @@ Page({
 
   confirm: function() {
     let that = this;
+    if(this.data.finished) return;
     if(this.data.cur_y < this.data.wordle_lines[0].length) return;
     let word = "";
     for(var i = 0; i < this.data.wordle_lines[0].length; i++)
@@ -147,6 +150,7 @@ Page({
           {
             if(!all_right)
             {
+              that.setData({finished: true});
               let sign = md5("insertWordleRecord" + that.data.cur_x + wx.getStorageSync('user').openid + "0" + wx.getStorageSync('user').session_key);
               wx.request({
                 url: `${config.serverRoot}/insertWordleRecord`,
@@ -165,6 +169,7 @@ Page({
           }
           if(all_right)
           {
+            that.setData({finished: true});
             let sign = md5("insertWordleRecord" + that.data.cur_x + wx.getStorageSync('user').openid + "1" + wx.getStorageSync('user').session_key);
             wx.request({
               url: `${config.serverRoot}/insertWordleRecord`,
@@ -203,7 +208,8 @@ Page({
             cur_y: 0,
             feedback: [["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""]],
             show_about: false,
-            show_statistics: false
+            show_statistics: false,
+            finished: false
           });
           that.onLoad();
         }

@@ -1,0 +1,30 @@
+<!--pages/word_filling/test.wxml-->
+<view class="container">
+  <view class="progress">
+    <text>{{index + 1}}/{{problemList.length}}</text>
+  </view>
+  <view class="show_detail">
+    <text>听力模式</text>
+    <van-switch checked="{{ dictation }}" size="22px" bind:change="onChangeSwitch" />
+  </view>
+  <view class="translation" wx:if="{{!dictation}}">
+    <text>{{problemList[index].translation}}</text>
+  </view>
+  <view class="vocal">
+    <image class="icon" src="/images/sound.png" bindtap="play_audio"></image>
+  </view>
+  <van-cell-group>
+    <van-field
+      value="{{ problemList[index].answer }}"
+      placeholder="输入单词"
+      border="{{ false }}"
+      bind:change="onChangeInputField"
+    />
+  </van-cell-group>
+</view>
+<view class="control">
+  <van-button class="prev" bindtap="prev" wx:if="{{index>0}}" icon="arrow-left" round></van-button>
+  <van-button class="prev" bindtap="download" wx:if="{{index==0}}" round>下载纸质题目</van-button>
+  <van-button class="next" bindtap="next" wx:if="{{index < problemList.length - 1}}" icon="arrow" round></van-button>
+  <van-button class="finish" bindtap="finish" wx:else icon="success" round></van-button>
+</view>

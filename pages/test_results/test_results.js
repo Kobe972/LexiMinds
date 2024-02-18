@@ -84,6 +84,7 @@ Page({
         {
           if(resultList[i].type == 'translation_choosing') resultList[i].type = '词义选择';
           else if(resultList[i].type == 'translation_filling') resultList[i].type = '词义填写';
+          else if(resultList[i].type == 'word_filling') resultList[i].type = '单词拼写';
           if(resultList[i].accuracy == -1) resultList[i].accuracy = '排队中';
           else if(resultList[i].accuracy == -1.5) resultList[i].accuracy = '未评测';
           else if(resultList[i].accuracy == -0.5) resultList[i].accuracy = '评分中';

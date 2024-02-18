@@ -37,7 +37,6 @@ Page({
                   date_arr.push(parts[0] + '-' + parts[1] + '-' + parts[2]);
                 }
                 that.setData({use_date_arr: date_arr});
-                console.log(that.data.use_date_arr);
                 that.setData({loaded: true});
               }
             });

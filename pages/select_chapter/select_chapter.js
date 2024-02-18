@@ -109,6 +109,12 @@ Page({
         url: `/pages/translation_filling/test?chapterId=${chapterId}`,
       });
     }
+    else if(this.data.purpose == 'word_filling')
+    {
+      wx.navigateTo({
+        url: `/pages/word_filling/test?chapterId=${chapterId}`,
+      });
+    }
   },
 
   getDownloadLink: function() {

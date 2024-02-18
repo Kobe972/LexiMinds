@@ -1,4 +1,4 @@
-// pages/dictation/test.js
+// pages/word_filling/test.js
 const config = require('../../utils/config.js');
 const md5 = require('blueimp-md5');
 const audio = wx.createInnerAudioContext()
@@ -76,42 +76,52 @@ Page({
 
   },
 
+  shuffleSelf: function(array, size) {
+      var index = -1,
+          length = array.length,
+          lastIndex = length - 1;
+
+      size = size === undefined ? length : size;
+      while (++index < size) {
+          // var rand = baseRandom(index, lastIndex),
+          var rand = index + Math.floor( Math.random() * (lastIndex - index + 1));
+          let value = array[rand];
+
+          array[rand] = array[index];
+
+          array[index] = value;
+      }
+      array.length = size;
+      return array;
+  },
+
   getChoices: function () {
     var that = this;
-    wx.showLoading({  title: '正在生成题目', mask: true})
-    let sign = md5("getChoicesByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+    let sign = md5("getWordsByChapterId" + this.data.chapterId + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/getChoicesByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
+      url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
-        wx.hideLoading();
+
         // Update the data with the retrieved book list
-        for(var i = 0; i < res.data.length; i++)
-        {
-          res.data[i].answer = 'undefined';
-        }
         that.setData({
-          problemList: res.data,
+          problemList: that.shuffleSelf(res.data, res.data.length),
         });
         that.play_audio();
       },
       fail: function (err) {
         // Handle the failure
-        wx.hideLoading();
-        wx.disableAlertBeforeUnload();
-        wx.navigateBack();
-        wx.showToast({
-          title: '题目生成失败',
-          icon: 'error',
-          duration: 2000,
-          mask: true
-        });
+        console.error('Failed to get chapter list', err);
       },
     });
   },
 
   next: function()
   {
+    if(this.data.problemList[this.data.index].answer == null || this.data.problemList[this.data.index].answer == undefined)
+    {
+      this.data.problemList[this.data.index].answer = '';
+    }
     if(this.data.index < this.data.problemList.length - 1)
     {
       this.setData({index: this.data.index + 1});
@@ -142,11 +152,11 @@ Page({
     let success = true;
     for(let i = 0; i < this.data.problemList.length; i++)
     {
-      if(this.data.problemList[i].truth == this.data.problemList[i].answer) correct++;
+      if(this.data.problemList[i].english.toLowerCase() == this.data.problemList[i].answer.toLowerCase()) correct++;
     }
-    let sign = md5("postTranslationChoosingResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
+    let sign = md5("postWordFillingResult" + wx.getStorageSync('user').openid + this.data.problemList.length + wx.getStorageSync('user').session_key);
     wx.request({
-      url: `${config.serverRoot}/postTranslationChoosingResult`,
+      url: `${config.serverRoot}/postWordFillingResult`,
       method: 'POST',
       data: {words: this.data.problemList, uid: wx.getStorageSync('user').openid, sign: sign},
       fail: function(err){
@@ -177,13 +187,19 @@ Page({
     this.setData({'problemList': this.data.problemList});
   },
 
+  onChangeInputField: function(e)
+  {
+    this.data.problemList[this.data.index].answer = e.detail;
+    this.setData({'problemList': this.data.problemList});
+  },
+
   download: function() {
     wx.showLoading({
       title: '正在下载',
       mask: true
     });
     wx.request({
-      url: `${config.serverRoot}/generateChoosingTestPdf`,
+      url: `${config.serverRoot}/generateWordFillingTestPdf`,
       data: this.data.problemList,
       method: 'POST',
       responseType: 'arraybuffer',

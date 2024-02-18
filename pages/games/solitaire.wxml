@@ -41,7 +41,7 @@
     <text>3、双方之前均为发过此单词</text>
   </view>
   <view class="row">
-    <text>如果对手词穷或游戏进行达到200轮，则自动判胜</text>
+    <text>如果对手词穷或游戏进行达到50轮，则自动判胜</text>
   </view>
 </van-popup>
 <van-popup

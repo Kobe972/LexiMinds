@@ -75,7 +75,8 @@
     "pages/games/games",
     "pages/games/wordle",
     "pages/games/solitaire",
-    "pages/games/vocabulary"
+    "pages/games/vocabulary",
+    "pages/word_filling/test"
   ],
   "window": {
     "navigationBarTextStyle": "black",

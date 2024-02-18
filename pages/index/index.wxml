@@ -19,7 +19,7 @@
     <button class="btn_start_new_words" bindtap="handleStartNewWords">开始背单词</button>
   </view>
   <view class="mainpage_middlecard">
-    <van-grid clickable column-num="6">
+    <van-grid clickable column-num="6" border="{{ false }}">
       <van-grid-item
         icon="records-o"
         link-type="navigateTo"
@@ -31,6 +31,12 @@
         link-type="reLaunch"
         url="/pages/select_book/select_book?purpose=translation_choosing"
         text="词义选择"
+      />
+      <van-grid-item
+        icon="font-o"
+        link-type="reLaunch"
+        url="/pages/select_book/select_book?purpose=word_filling"
+        text="单词拼写"
       />
     </van-grid>
   </view>

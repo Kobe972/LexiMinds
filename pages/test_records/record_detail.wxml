@@ -45,7 +45,7 @@
       <text wx:else>来源：{{book_name+", "+chapter_name+"\n"}}我的答案：{{recordDetail.answer}}</text>
     </view>
   </view>
-  <view class="feedback">
+  <view class="feedback" wx:if="{{type=='词义填写'}}">
     <van-button plain type="info" size="mini" bind:click="feedback">反馈</van-button>
   </view>
 </view>

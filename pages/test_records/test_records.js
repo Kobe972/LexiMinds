@@ -110,7 +110,7 @@ Page({
   navigateToDetails: function(e){
     const recordId = e.currentTarget.dataset.recordid;
     wx.navigateTo({
-      url: `/pages/test_records/record_detail?recordId=${recordId}`,
+      url: `/pages/test_records/record_detail?recordId=${recordId}&type=${this.data.type}`,
     });
   },
 

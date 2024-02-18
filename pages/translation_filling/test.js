@@ -118,7 +118,7 @@ Page({
 
   next: function()
   {
-    if(this.data.problemList[this.data.index].answer == null)
+    if(this.data.problemList[this.data.index].answer == null || this.data.problemList[this.data.index].answer == undefined)
     {
       this.data.problemList[this.data.index].answer = '';
     }
