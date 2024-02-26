@@ -4,5 +4,8 @@
     "van-button": "/vant-weapp/dist/button/index",
     "van-cell": "/vant-weapp/dist/cell/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#0000ff",
+  "navigationBarTextStyle": "white"
 }

@@ -4,5 +4,6 @@
     "van-button": "/vant-weapp/dist/button/index",
     "van-cell-group": "/vant-weapp/dist/cell-group/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "消息列表"
 }

@@ -3,5 +3,6 @@
     "van-icon": "/vant-weapp/dist/icon/index",
     "van-button": "/vant-weapp/dist/button/index",
     "van-switch": "/vant-weapp/dist/switch/index"
-  }
+  },
+  "navigationBarTitleText": "错题重测"
 }

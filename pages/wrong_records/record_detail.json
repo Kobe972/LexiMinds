@@ -2,5 +2,6 @@
   "usingComponents": {
     "van-button": "/vant-weapp/dist/button/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "错题记录"
 }

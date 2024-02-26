@@ -3,5 +3,6 @@
     "van-cell": "/vant-weapp/dist/cell/index",
     "van-cell-group": "/vant-weapp/dist/cell-group/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "我的笔记"
 }

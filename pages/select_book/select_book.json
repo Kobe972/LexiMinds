@@ -7,5 +7,6 @@
     "van-cell-group": "/vant-weapp/dist/cell-group/index",
     "xx-calendar": "/components/xx-calendar/xx-calendar",
     "van-swipe-cell": "/vant-weapp/dist/swipe-cell/index"
-  }
+  },
+  "navigationBarTitleText": "选择词书"
 }

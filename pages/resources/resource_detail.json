@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "van-button": "/vant-weapp/dist/button/index"
-  }
+  },
+  "navigationBarTitleText": "资料下载"
 }

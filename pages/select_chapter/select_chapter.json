@@ -8,5 +8,6 @@
     "van-cell": "/vant-weapp/dist/cell/index",
     "van-cell-group": "/vant-weapp/dist/cell-group/index",
     "van-dialog": "/vant-weapp/dist/dialog/index"
-  }
+  },
+  "navigationBarTitleText": "选择章节"
 }

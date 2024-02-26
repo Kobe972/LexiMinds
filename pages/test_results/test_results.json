@@ -3,5 +3,6 @@
     "van-field": "/vant-weapp/dist/field/index",
     "van-divider": "/vant-weapp/dist/divider/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "测评记录"
 }

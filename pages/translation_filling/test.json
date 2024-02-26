@@ -5,5 +5,6 @@
     "van-dialog": "/vant-weapp/dist/dialog/index",
     "van-field": "/vant-weapp/dist/field/index",
     "van-switch": "/vant-weapp/dist/switch/index"
-  }
+  },
+  "navigationBarTitleText": "词义填写测试"
 }

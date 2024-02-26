@@ -3,5 +3,6 @@
     "van-dialog": "/vant-weapp/dist/dialog/index",
     "van-field": "/vant-weapp/dist/field/index",
     "van-button": "/vant-weapp/dist/button/index"
-  }
+  },
+  "navigationBarTitleText": "不忘背单词"
 }

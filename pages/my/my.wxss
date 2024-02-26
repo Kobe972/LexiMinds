@@ -8,7 +8,7 @@
 
 .my_topcard
 {
-  background-color:blue;
+  background: -webkit-linear-gradient(top,blue,rgb(79, 134, 234));
   height: 3cm;
   display: flex;
   flex-direction: row;

@@ -4,5 +4,6 @@
     "van-cell-group": "/vant-weapp/dist/cell-group/index",
     "van-button": "/vant-weapp/dist/button/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "测评结果"
 }

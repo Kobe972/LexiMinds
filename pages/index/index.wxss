@@ -17,6 +17,7 @@ van-cell{
 
 .progress{
   height: 400rpx;
+  background: -webkit-linear-gradient(top,blue,rgb(79, 134, 234));
   background-color: blue;
   display: flex;
   flex-direction: column;
@@ -85,6 +86,16 @@ van-cell{
   margin-right: 5%;
 }
 
+.view_btn_start_new_words {
+  margin-top: 1cm;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+van-button {
+  --button-large-height: 40px;
+}
+
 .container xx-calendar{
   margin-left: 5%;
   margin-right: 5%;
@@ -103,6 +114,7 @@ van-cell{
   border-radius: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  box-shadow: 5rpx 5rpx 10rpx 0 rgb(190, 190, 190);
   --grid-item-content-background-color:whitesmoke;
   --grid-item-content-active-color:#e0e0e0;
   --grid-item-icon-size: 15px;

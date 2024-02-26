@@ -4,5 +4,6 @@
     "van-divider": "/vant-weapp/dist/divider/index",
     "van-icon": "/vant-weapp/dist/icon/index",
     "van-popup": "/vant-weapp/dist/popup/index"
-  }
+  },
+  "navigationBarTitleText": "单词接龙"
 }
