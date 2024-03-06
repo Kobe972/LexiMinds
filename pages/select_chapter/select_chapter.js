@@ -18,6 +18,27 @@ Page({
   onLoad(options) {
     this.data.bookId = options.bookId;
     this.data.purpose = options.purpose;
+    let that = this;
+    let videoAd = null;
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-c349ee398b94db8f'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.getDownloadLink();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
+    this.setData({videoAd: videoAd});
     this.getChapterList();
   },
 
@@ -115,6 +136,32 @@ Page({
         url: `/pages/word_filling/test?chapterId=${chapterId}`,
       });
     }
+  },
+
+  showAdd: function() {
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '下载词书需要占用大量服务器资源，为了降低下载频率，需要看广告后下载。是否愿意看激励广告？',
+      complete: (res) => {
+        if (res.cancel) {
+          
+        }
+    
+        if (res.confirm) {
+          if (that.data.videoAd) {
+            that.data.videoAd.show().catch(() => {
+              // 失败重试
+              that.data.videoAd.load()
+                .then(() => videoAd.show())
+                .catch(err => {
+                  console.error('激励视频 广告显示失败', err)
+                })
+            })
+          }
+        }
+      }
+    })
   },
 
   getDownloadLink: function() {

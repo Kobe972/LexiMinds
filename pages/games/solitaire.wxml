@@ -20,6 +20,7 @@
   </scroll-view>
   <van-button type="danger" class="restart-btn" bind:click="restart" wx:if="{{started==1}}">重开</van-button>
   <van-button type="primary" class="restart-btn" bind:click="start" wx:else>开始</van-button>
+  <ad unit-id="adunit-8bb71c1eb7c9f56d" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
 </view>
 <van-popup
   show="{{ show_about }}"

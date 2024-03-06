@@ -11,10 +11,11 @@ Page({
       {text:'学习记录', icon:'/images/document.png', action: 'navigateToLearningRecords'},
       {text:'测评记录', icon:'/images/document_edit.png', action: 'navigateToTestResults'},
       {text:'错题集', icon:'/images/notice.png', action: 'navigateToWrongRecords'},
-      {text:'我的收藏', icon:'star-o', action: 'navigateToMyFavorite'},
+      {text:'我的收藏', icon:'bookmark-o', action: 'navigateToMyFavorite'},
       {text:'我的笔记', icon:'comment-o', action: 'navigateToMyNote'},
       {text:'我的通知', icon:'chat-o', action: 'navigateToMyNotification'},
-      {text:'浏览官网', icon:'link-o', action: 'navigateToWebsite'}
+      {text:'浏览官网', icon:'link-o', action: 'navigateToWebsite'},
+      {text:'体验评价', icon:'star-o', action: 'comment'}
     ],
     nickName: "未设置昵称",
     phoneNumber: "未设置手机号",
@@ -146,6 +147,19 @@ Page({
   {
     wx.navigateTo({
       url: '/pages/website/website',
+    });
+  },
+
+  comment: function()
+  {
+    var plugin = requirePlugin("wxacommentplugin");
+    plugin.openComment({
+      success: (res)=>{
+        console.log('plugin.openComment success', res);
+      },
+      fail: (res) =>{
+        console.log('plugin.openComment fail', res);
+      }
     });
   }
 })

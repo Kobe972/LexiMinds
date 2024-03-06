@@ -46,6 +46,7 @@
     <van-button size="small" type="info" data-value="M" bind:click="input">M</van-button>
     <van-button size="small" icon="cross" type="danger" bind:click="backspace"></van-button>
   </view>
+  <ad unit-id="adunit-2f47011fa86ff735" bindload="adLoad" binderror="adError" bindclose="adClose"></ad>
 </view>
 <van-popup
   show="{{ show_about }}"

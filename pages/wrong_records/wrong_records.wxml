@@ -6,7 +6,7 @@
     </view>
   </van-cell-group>
   <van-cell-group title="选项">
-    <van-cell title="下载错题集" bind:click="getDownloadLink"></van-cell>
+    <van-cell title="下载错题集" bind:click="showAdd"></van-cell>
     <van-cell title="错题集测评" bind:click="evaluate"></van-cell>
   </van-cell-group>
   <van-dialog

@@ -6,7 +6,7 @@
   <view class="english">
     <text>{{wordList[index].english}}</text>
   </view>
-  <view class="vocal" wx:if="{{wordList[index].vocal != null && wordList[index].image_url != ''}}">
+  <view class="vocal" wx:if="{{wordList[index].vocal != null && wordList[index].vocal != ''}}">
     <text>{{wordList[index].vocal}}</text>
     <image class="icon" src="/images/sound.png" wx:if="{{wordList[index].vocal != null}}" bindtap="play_audio"></image>
   </view>
@@ -56,8 +56,8 @@
   
     <view class="marks">
       <view class="favorites">
-        <van-button plain icon="star-o" type="info" size="mini" bind:click="change_favor" wx:if="{{!is_favored}}">收藏</van-button>
-        <van-button plain icon="star" type="info" size="mini" bind:click="change_favor" wx:else>取消收藏</van-button>
+        <van-button plain icon="bookmark-o" type="info" size="mini" bind:click="change_favor" wx:if="{{!is_favored}}">收藏</van-button>
+        <van-button plain icon="bookmark" type="info" size="mini" bind:click="change_favor" wx:else>取消收藏</van-button>
       </view>
       <view class="note">
         <van-button plain type="info" size="mini" bind:click="onClickShow">笔记</van-button>

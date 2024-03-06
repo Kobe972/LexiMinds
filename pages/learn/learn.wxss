@@ -86,12 +86,15 @@
 .prev{
   margin-left: 0.5cm;
   flex-grow: 1;
+  background-color: rgba(0, 0, 0, 0);
 }
 .next{
   margin-right: 0.5cm;
+  background-color: rgba(0, 0, 0, 0);
 }
 .finish{
   margin-right: 0.5cm;
+  background-color: rgba(0, 0, 0, 0);
 }
 .examplesBox
 {
@@ -150,10 +153,10 @@
 }
 
 .margin{
-  height: 1.5cm;
+  height: 1.8cm;
 }
 .margin image{
-  height: 1.5cm;
+  height: 1.8cm;
 }
 van-button{
   border: none;
