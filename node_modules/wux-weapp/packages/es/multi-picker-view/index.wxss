@@ -1,0 +1,5 @@
+.wux-picker {
+  display: flex;
+  align-items: center;
+  flex-direction: row
+}

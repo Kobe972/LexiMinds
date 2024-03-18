@@ -15,27 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let videoAd = null;
-    let that = this;
-
-    // 在页面onLoad回调事件中创建激励视频广告实例
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-a307c2848643a84d'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {
-        console.error('激励视频光告加载失败', err)
-      })
-      videoAd.onClose((res) => {
-        if (res && res.isEnded) {
-          that.getDownloadLink();
-        } else {
-          // 播放中途退出，不下发游戏奖励
-        }
-      })
-    }
-    this.setData({videoAd: videoAd});
     this.loadRecordItems();
   },
 
@@ -215,6 +194,7 @@ Page({
   },
 
   showAdd: function() {
+    this.pullAdd();
     let that = this;
     wx.showModal({
       title: '提示',
@@ -238,5 +218,29 @@ Page({
         }
       }
     })
+  },
+  pullAdd: function()
+  {
+    let videoAd = null;
+    let that = this;
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-a307c2848643a84d'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.getDownloadLink();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
+    this.setData({videoAd: videoAd});
   }
 })

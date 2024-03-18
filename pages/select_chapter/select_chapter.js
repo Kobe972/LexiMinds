@@ -18,27 +18,6 @@ Page({
   onLoad(options) {
     this.data.bookId = options.bookId;
     this.data.purpose = options.purpose;
-    let that = this;
-    let videoAd = null;
-
-    // 在页面onLoad回调事件中创建激励视频广告实例
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-c349ee398b94db8f'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {
-        console.error('激励视频光告加载失败', err)
-      })
-      videoAd.onClose((res) => {
-        if (res && res.isEnded) {
-          that.getDownloadLink();
-        } else {
-          // 播放中途退出，不下发游戏奖励
-        }
-      })
-    }
-    this.setData({videoAd: videoAd});
     this.getChapterList();
   },
 
@@ -139,6 +118,7 @@ Page({
   },
 
   showAdd: function() {
+    this.pullAdv();
     let that = this;
     wx.showModal({
       title: '提示',
@@ -235,5 +215,29 @@ Page({
         })
       }
     });
+  },
+  pullAdv: function()
+  {
+    let that = this;
+    let videoAd = null;
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-c349ee398b94db8f'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.getDownloadLink();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
+    this.setData({videoAd: videoAd});
   }
 })

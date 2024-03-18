@@ -1,6 +1,8 @@
 // pages/select_book_for_learn/select_book_for_learn.js
 const config = require('../../utils/config.js');
 const md5 = require('blueimp-md5');
+import { $wuxDialog } from '../../miniprogram_npm/wux-weapp/index';
+
 Page({
 
   /**
@@ -146,5 +148,43 @@ Page({
         })
         break;
     }
+  },
+
+  onClickAddButton: function() {
+    let that = this;
+    $wuxDialog().prompt({
+      resetOnClose: true,
+      title: '输入邀请码',
+      content: '输入邀请码加入私有词书',
+      defaultText: '',
+      maxlength: 30,
+      onConfirm(e, response) {
+        let sign = md5("activateBook" + response + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+        wx.request({
+          url: `${config.serverRoot}/activateBook`,
+          method: 'POST',
+          data: {uid: wx.getStorageSync('user').openid, activation_code: response, sign: sign},
+          success: function(res)
+          {
+            if(res.data.msg == 'success')
+            {
+              wx.showToast({
+                title: '加入成功',
+                duration: 2000
+              });
+              that.onLoad({purpose: that.data.purpose});
+            }
+            else
+            {
+              wx.showToast({
+                title: res.data.msg,
+                duration: 2000,
+                icon: 'error'
+              });
+            }
+          }
+        })
+      },
+    });
   }
 })

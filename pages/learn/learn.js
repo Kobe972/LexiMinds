@@ -93,6 +93,7 @@ Page({
         });
 
         that.getWordMarks();
+        that.play_audio();
       },
       fail: function (err) {
         // Handle the failure
@@ -114,6 +115,7 @@ Page({
       this.setData({index: this.data.index + 1});
     }
     this.getWordMarks();
+    this.play_audio();
   },
 
   prev: function()
@@ -127,7 +129,7 @@ Page({
 
   play_audio: function()
   {
-    audio.pause();
+    audio.stop();
     const URL = "https://dict.youdao.com/dictvoice?audio=" + this.data.wordList[this.data.index].english + "&type=2";
     audio.src = URL;
     audio.play();

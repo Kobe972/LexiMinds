@@ -184,13 +184,27 @@ Page({
       method: 'POST',
       data: {uid: wx.getStorageSync('user').openid, avatarUrl: this.data.avatarUrl_converted, nickName: this.data.nickName, phone: this.data.phoneNumber, code: this.data.code, sign: sign},
       success: function(res){
-        wx.navigateBack();
-        wx.showToast({
-          title: '保存成功',
-          icon: 'success',
-          duration: 2000,
-          mask: true
-        });
+        if(res.data.msg == 'success')
+        {
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 2000,
+            mask: true
+          });
+          setTimeout(function () {
+            wx.navigateBack();
+          }, 2000);
+        }
+        else
+        {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error',
+            duration: 2000,
+            mask: true
+          });
+        }
       },
       fail: function(res){
         wx.showToast({

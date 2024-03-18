@@ -13,3 +13,7 @@
   justify-content: center;
   margin-top: 0.3cm;
 }
+
+.go-rating {
+  align-self: center;
+}

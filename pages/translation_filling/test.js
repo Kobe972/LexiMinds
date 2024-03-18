@@ -16,27 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let videoAd = null;
-    let that = this;
-
-    // 在页面onLoad回调事件中创建激励视频广告实例
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-371aea9f17d3ecf4'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {
-        console.error('激励视频光告加载失败', err)
-      })
-      videoAd.onClose((res) => {
-        if (res && res.isEnded) {
-          that.download();
-        } else {
-          // 播放中途退出，不下发游戏奖励
-        }
-      })
-    }
-    this.setData({videoAd: videoAd});
     this.setData({index: 0, chapterId: options.chapterId});
     this.getChoices();
     let sign = md5("setClockIn" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
@@ -161,7 +140,7 @@ Page({
 
   play_audio: function()
   {
-    audio.pause();
+    audio.stop();
     const URL = "https://dict.youdao.com/dictvoice?audio=" + this.data.problemList[this.data.index].english + "&type=2";
     audio.src = URL;
     audio.play();
@@ -258,6 +237,7 @@ Page({
   },
 
   showAdd: function() {
+    this.pullAdd();
     let that = this;
     wx.showModal({
       title: '提示',
@@ -281,5 +261,29 @@ Page({
         }
       }
     })
+  },
+  pullAdd: function()
+  {
+    let videoAd = null;
+    let that = this;
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-371aea9f17d3ecf4'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.download();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
+    this.setData({videoAd: videoAd});
   }
 })

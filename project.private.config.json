@@ -5,5 +5,6 @@
     "compileHotReLoad": true,
     "urlCheck": false,
     "autoAudits": false
-  }
+  },
+  "libVersion": "3.3.4"
 }

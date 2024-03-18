@@ -15,3 +15,11 @@
     </van-swipe-cell>
   </block>
 </van-cell-group>
+<wux-fab-button
+  position="bottomRight"
+  theme="calm"
+  direction="horizontal"
+  actionRotate="{{false}}"
+  bind:change="onClickAddButton"
+/>
+<wux-dialog id="wux-dialog" />

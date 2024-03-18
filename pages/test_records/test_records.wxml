@@ -19,7 +19,7 @@
     </view>
   </van-cell-group>
   <view class="bottom">
-    <van-button class="go-rating" type="info" bind:click="go_rating" style="margin-left: 0.5cm; flex-grow: 1;" wx:if="{{(wrongRecordItems.length > 0 || correctRecordItems.length > 0) && type == '词义填写'}}" round>重新评分</van-button>
-    <van-button class="go-rating" type="danger" bind:click="delete" style="margin-right: 0.5cm;" wx:if="{{wrongRecordItems.length > 0 || correctRecordItems.length > 0 || not_rated.length > 0}}" round>删除结果</van-button>
+    <van-button type="info" bind:click="go_rating" style="margin-left: 0.5cm; flex-grow: 1;" wx:if="{{(wrongRecordItems.length > 0 || correctRecordItems.length > 0) && type == '词义填写'}}" round>重新评分</van-button>
+    <van-button type="danger" bind:click="delete" style="margin-right: 0.5cm;" wx:if="{{wrongRecordItems.length > 0 || correctRecordItems.length > 0 || not_rated.length > 0}}" round>删除结果</van-button>
   </view>
 </view>
