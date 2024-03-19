@@ -1,0 +1,36 @@
+<!--pages/faq/faq.wxml-->
+<view class="container">
+  <view class="question">
+    <text class="header">1. 没有找到我想要的词书？</text>
+    <text>可以将词书发送至开发者邮箱myhack2@163.com，如果是比较重要的资源，我们会把它收录为公共词书。</text>
+  </view>
+  <view class="question">
+    <text class="header">2. 是否可以添加自己的词书？</text>
+    <text>不忘背单词支持私人词书，可以到官网{{serverRoot}}进行添加。添加后，您可以邀请自己或其他用户加入该词书。</text>
+  </view>
+  <view class="question">
+    <text class="header">3. 如何发布资源？</text>
+    <text>在不忘背单词(LexiMinds)官网{{serverRoot}}注册账号并登录后，点击“资源管理”即可上传用户资源。</text>
+  </view>
+  <view class="question">
+    <text class="header">4. 词义选择打开空白页面/词义填写一直排队</text>
+    <text>可能是AI服务器关机导致的，请联系客服，我们会及时处理。</text>
+  </view>
+  <view class="question">
+    <text class="header">5. 词义填写AI判断错误</text>
+    <text>在测试结果中打开单词详情，提交反馈后会自动修正结果，我们会定期微调模型，达到更高的准确率。</text>
+  </view>
+  <view class="question">
+    <text class="header">6. LexiMinds官网充值失败</text>
+    <text>充值失败不会扣钱，请联系客服，我们会及时处理。</text>
+  </view>
+  <view class="question">
+    <text class="header">7. 点击“体验评价”无反应</text>
+    <text>体验评价每月仅可发布一次。</text>
+  </view>
+  <view class="question">
+    <text class="header">8. 还有其他问题？</text>
+    <text>点击下方按钮联系客服。客服为人工，请您耐心等待。我们会尽快回复，通常您在一天内即可得到答复。如果有产品功能上的建议请发邮件。</text>
+  </view>
+  <van-button type="primary" open-type="contact">联系客服</van-button>
+</view>

@@ -1,0 +1,30 @@
+/* pages/faq/faq.wxss */
+.container{
+  height: 100vh;
+  background-color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.7cm;
+  padding-right: 0.7cm;
+  padding-top: 0.5cm;
+  align-items: center;
+}
+
+.question{
+  margin-bottom: 0.5cm;
+  background-color: whitesmoke;
+  font-size: 30rpx;
+  padding: 0.2cm;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.van-button {
+  margin-bottom: 5px;
+}

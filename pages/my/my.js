@@ -15,7 +15,8 @@ Page({
       {text:'我的笔记', icon:'comment-o', action: 'navigateToMyNote'},
       {text:'我的通知', icon:'chat-o', action: 'navigateToMyNotification'},
       {text:'浏览官网', icon:'link-o', action: 'navigateToWebsite'},
-      {text:'体验评价', icon:'star-o', action: 'comment'}
+      {text:'体验评价', icon:'star-o', action: 'comment'},
+      {text:'常见问题', icon:'question-o', action: 'faq'}
     ],
     nickName: "未设置昵称",
     phoneNumber: "未设置手机号",
@@ -161,5 +162,12 @@ Page({
         console.log('plugin.openComment fail', res);
       }
     });
-  }
+  },
+
+  faq: function()
+  {
+    wx.navigateTo({
+      url: '/pages/faq/faq',
+    });
+  },
 })

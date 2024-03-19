@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-button": "/vant-weapp/dist/button/index"
+  },
+  "navigationBarTitleText": "常见问题"
+}
