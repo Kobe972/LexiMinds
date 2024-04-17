@@ -168,6 +168,7 @@ Page({
   change_favor: function()
   {
     this.setData({is_favored: !this.data.is_favored});
+    let sign = md5("updateWordMarkByContentId" + this.data.wordList[this.data.index].id + "favor" + wx.getStorageSync('user').openid + this.data.is_favored + wx.getStorageSync('user').session_key);
     wx.request({
       url: `${config.serverRoot}/updateWordMarkByContentId`,
       method: 'POST',
