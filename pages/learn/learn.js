@@ -125,6 +125,7 @@ Page({
       this.setData({index: this.data.index - 1});
     }
     this.getWordMarks();
+    this.play_audio();
   },
 
   play_audio: function()
@@ -200,5 +201,28 @@ Page({
 
   onChangeSwitch: function({ detail }) {
     this.setData({show_detail: detail})
+  },
+
+  handleTouchstart: function(e)
+  {
+    this.setData({beginX: e.changedTouches[0].screenX});
+    this.setData({beginY: e.changedTouches[0].screenY});
+    this.setData({endX: e.changedTouches[0].screenX});
+    this.setData({endY: e.changedTouches[0].screenY});
+  },
+
+  handleTouchmove: function(e) {
+    this.setData({endX: e.changedTouches[0].screenX});
+    this.setData({endY: e.changedTouches[0].screenY});
+  },
+
+  handleTouchend: function(e) {
+    let dx = this.data.endX - this.data.beginX;
+    let dy = this.data.endY - this.data.beginY;
+    if(Math.abs(dx) - Math.abs(dy) > 50)
+    {
+      if(dx > 0) this.prev();
+      else this.next();
+    }
   }
 })

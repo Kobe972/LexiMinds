@@ -265,5 +265,28 @@ Page({
       })
     }
     this.setData({videoAd: videoAd});
+  },
+
+  handleTouchstart: function(e)
+  {
+    this.setData({beginX: e.changedTouches[0].screenX});
+    this.setData({beginY: e.changedTouches[0].screenY});
+    this.setData({endX: e.changedTouches[0].screenX});
+    this.setData({endY: e.changedTouches[0].screenY});
+  },
+
+  handleTouchmove: function(e) {
+    this.setData({endX: e.changedTouches[0].screenX});
+    this.setData({endY: e.changedTouches[0].screenY});
+  },
+
+  handleTouchend: function(e) {
+    let dx = this.data.endX - this.data.beginX;
+    let dy = this.data.endY - this.data.beginY;
+    if(Math.abs(dx) - Math.abs(dy) > 50)
+    {
+      if(dx > 0) this.prev();
+      else this.next();
+    }
   }
 })

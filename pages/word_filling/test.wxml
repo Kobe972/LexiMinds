@@ -1,5 +1,5 @@
 <!--pages/word_filling/test.wxml-->
-<view class="container">
+<view class="container" bind:touchstart="handleTouchstart" bind:touchmove="handleTouchmove" bind:touchend="handleTouchend">
   <view class="progress">
     <text>{{index + 1}}/{{problemList.length}}</text>
   </view>
