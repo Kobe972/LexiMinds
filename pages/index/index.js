@@ -7,7 +7,9 @@ Page({
     use_date_arr:[],
     loaded: false,
     statistics: {},
-    current_book: null
+    current_book: null,
+    current_chapterid: null,
+    current_wordid: null
   },
   onLoad(options) {
     let that = this;
@@ -57,7 +59,27 @@ Page({
                   that.setData({current_book: res.data});
                 } 
               }
-            })
+            });
+            sign = md5("getCurrentWordId" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+            wx.request({
+              url: `${config.serverRoot}/getCurrentWordId?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
+              success: function(res){
+                if(res.data)
+                {
+                  that.setData({current_wordid: res.data});
+                } 
+              }
+            });
+            sign = md5("getCurrentChapterId" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
+            wx.request({
+              url: `${config.serverRoot}/getCurrentChapterId?uid=${wx.getStorageSync('user').openid}&sign=${sign}`,
+              success: function(res){
+                if(res.data)
+                {
+                  that.setData({current_chapterid: res.data});
+                } 
+              }
+            });
           },
           fail: function(res) {
             wx.showModal({
@@ -82,10 +104,9 @@ Page({
       url: '/pages/select_book/select_book?purpose=learn',
     });
   },
-  navigateToSelectChapter: function(e){
-    const bookId = e.currentTarget.dataset.id;
+  navigateToLearn: function(e){
     wx.navigateTo({
-      url: `/pages/select_chapter/select_chapter?bookId=${bookId}&purpose=learn`,
+      url: `/pages/learn/learn?chapterId=${this.data.current_chapterid}&wordId=${this.data.current_wordid}&purpose=learn`,
     });
   },
   onShareAppMessage() {

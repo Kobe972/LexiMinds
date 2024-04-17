@@ -12,7 +12,8 @@ Page({
     is_favored: false,
     notes: "",
     show_edit_note: false,
-    show_detail: true
+    show_detail: true,
+    wordId: null
   },
 
   /**
@@ -20,6 +21,10 @@ Page({
    */
   onLoad(options) {
     this.setData({index: 0, chapterId: options.chapterId});
+    if(options.wordId)
+    {
+      this.setData({index: 0, wordId: options.wordId});
+    }
     this.getWordList();
     let sign = md5("setClockIn" + wx.getStorageSync('user').openid + wx.getStorageSync('user').session_key);
     wx.request({
@@ -85,12 +90,20 @@ Page({
       url: `${config.serverRoot}/getWordsByChapterId?chapterId=${this.data.chapterId}&uid=${wx.getStorageSync('user').openid}&sign=${sign}`, // Replace with your actual endpoint
       method: 'GET',
       success: function (res) {
-        console.log(res.data);
-
         // Update the data with the retrieved book list
         that.setData({
           wordList: res.data,
         });
+        if(that.data.wordId != null)
+        {
+          let index = 0;
+          for(index = 0; index < that.data.wordList.length; index++)
+          {
+            if(that.data.wordList[index].id == that.data.wordId){
+              that.setData({index: index});
+            }
+          }
+        }
 
         that.getWordMarks();
         that.play_audio();

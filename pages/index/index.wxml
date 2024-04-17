@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class = 'container'>
   <view class='mainpage_topcard'>
-    <van-cell icon="{{current_book.avatarURL}}" title="{{current_book.bookname}}" is-link value="继续学习" label="当前正在学习" wx:if="{{current_book != null}}" data-id="{{current_book.id}}" bind:tap="navigateToSelectChapter" />
+    <van-cell icon="{{current_book.avatarURL}}" title="{{current_book.bookname}}" is-link value="继续学习" label="当前正在学习" wx:if="{{current_book != null}}" bind:tap="navigateToLearn" />
     <view class = 'progress'>
       <view class = 'progress_statistics'>
         <view class = 'progress_statistics_today'>
