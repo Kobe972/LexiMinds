@@ -9,7 +9,11 @@ Page({
    */
   data: {
     serverRoot: config.serverRoot,
-    dictation: false
+    dictation: false,
+    show_dialog: false,
+    num_test_words: 0,
+    num_total_words: 0,
+    test_option_confirmed: false
   },
 
   /**
@@ -106,6 +110,9 @@ Page({
         // Update the data with the retrieved book list
         that.setData({
           problemList: that.shuffleSelf(res.data, res.data.length),
+          num_total_words: res.data.length,
+          num_test_words: res.data.length,
+          show_dialog: true
         });
         that.play_audio();
       },
@@ -305,5 +312,13 @@ Page({
       if(dx > 0) this.prev();
       else this.next();
     }
+  },
+  onSetOptions: function()
+  {
+    this.setData({problemList: this.data.problemList.slice(0, this.data.num_test_words), test_option_confirmed: true});
+  },
+  onInputNumTestWords: function(e)
+  {
+    this.setData({num_test_words: e.detail.value});
   }
 })

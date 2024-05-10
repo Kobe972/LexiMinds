@@ -199,5 +199,56 @@ Page({
         }
       }
     });
+  },
+  pullAdv: function()
+  {
+    let that = this;
+    let videoAd = null;
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-92ab451f3f192092'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.go_rating();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
+    this.setData({videoAd: videoAd});
+  },
+  showAdd: function() {
+    this.pullAdv();
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '出于GPU服务器维护需要，AI打分需要看一个激励广告',
+      confirmText: '去观看',
+      complete: (res) => {
+        if (res.cancel) {
+          
+        }
+    
+        if (res.confirm) {
+          if (that.data.videoAd) {
+            that.data.videoAd.show().catch(() => {
+              // 失败重试
+              that.data.videoAd.load()
+                .then(() => videoAd.show())
+                .catch(err => {
+                  console.error('激励视频 广告显示失败', err)
+                })
+            })
+          }
+        }
+      }
+    })
   }
 })

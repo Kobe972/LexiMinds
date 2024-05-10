@@ -3,7 +3,7 @@
   "projectname": "LexiMinds",
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": false,
+    "urlCheck": true,
     "autoAudits": false
   },
   "libVersion": "3.3.4"

@@ -1,7 +1,7 @@
 // pages/test/start_test.js
 const config = require('../../utils/config.js');
 const md5 = require('blueimp-md5');
-const audio = wx.createInnerAudioContext()
+const audio = wx.createInnerAudioContext();
 Page({
 
   /**
@@ -9,7 +9,11 @@ Page({
    */
   data: {
     serverRoot: config.serverRoot,
-    dictation: false
+    dictation: false,
+    show_dialog: false,
+    num_test_words: 0,
+    num_total_words: 0,
+    test_option_confirmed: false
   },
 
   /**
@@ -86,9 +90,7 @@ Page({
           // var rand = baseRandom(index, lastIndex),
           var rand = index + Math.floor( Math.random() * (lastIndex - index + 1));
           let value = array[rand];
-
           array[rand] = array[index];
-
           array[index] = value;
       }
       array.length = size;
@@ -106,6 +108,9 @@ Page({
         // Update the data with the retrieved book list
         that.setData({
           problemList: that.shuffleSelf(res.data, res.data.length),
+          num_total_words: res.data.length,
+          num_test_words: res.data.length,
+          show_dialog: true
         });
         that.play_audio();
       },
@@ -308,5 +313,13 @@ Page({
       if(dx > 0) this.prev();
       else this.next();
     }
+  },
+  onSetOptions: function()
+  {
+    this.setData({problemList: this.data.problemList.slice(0, this.data.num_test_words), test_option_confirmed: true});
+  },
+  onInputNumTestWords: function(e)
+  {
+    this.setData({num_test_words: e.detail.value});
   }
 })

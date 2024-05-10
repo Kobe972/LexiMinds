@@ -4,7 +4,9 @@
     "van-button": "/vant-weapp/dist/button/index",
     "van-dialog": "/vant-weapp/dist/dialog/index",
     "van-field": "/vant-weapp/dist/field/index",
-    "van-switch": "/vant-weapp/dist/switch/index"
+    "van-switch": "/vant-weapp/dist/switch/index",
+    "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
+    "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index"
   },
   "navigationBarTitleText": "词义填写测试"
 }

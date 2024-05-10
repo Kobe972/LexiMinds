@@ -1,19 +1,19 @@
 <!--pages/word_filling/test.wxml-->
 <view class="container" bind:touchstart="handleTouchstart" bind:touchmove="handleTouchmove" bind:touchend="handleTouchend">
-  <view class="progress">
+  <view class="progress" wx:if="{{test_option_confirmed}}">
     <text>{{index + 1}}/{{problemList.length}}</text>
   </view>
-  <view class="show_detail">
+  <view class="show_detail" wx:if="{{test_option_confirmed}}">
     <text>听力模式</text>
     <van-switch checked="{{ dictation }}" size="22px" bind:change="onChangeSwitch" />
   </view>
-  <view class="translation" wx:if="{{!dictation}}">
+  <view class="translation" wx:if="{{!dictation}}" wx:if="{{test_option_confirmed}}">
     <text>{{problemList[index].translation}}</text>
   </view>
-  <view class="vocal">
+  <view class="vocal" wx:if="{{test_option_confirmed}}">
     <image class="icon" src="/images/sound.png" bindtap="play_audio"></image>
   </view>
-  <van-cell-group>
+  <van-cell-group wx:if="{{test_option_confirmed}}">
     <van-field
       value="{{ problemList[index].answer }}"
       placeholder="输入单词"
@@ -22,9 +22,28 @@
     />
   </van-cell-group>
 </view>
-<view class="control">
+<view class="control" wx:if="{{test_option_confirmed}}">
   <van-button class="prev" bindtap="prev" wx:if="{{index>0}}" icon="arrow-left" round></van-button>
   <van-button class="prev" bindtap="showAdd" wx:if="{{index==0}}" round>下载纸质题目</van-button>
   <van-button class="next" bindtap="next" wx:if="{{index < problemList.length - 1}}" icon="arrow" round></van-button>
   <van-button class="finish" bindtap="finish" wx:else icon="success" round></van-button>
 </view>
+<van-dialog
+  use-slot
+  title="词测选项"
+  show="{{ show_dialog }}"
+  bind:confirm="onSetOptions"
+>
+  <wux-cell title="测试词数" hover-class="none">
+    <wux-input-number
+      disabled="{{ false }}"
+      value="{{ num_test_words }}"
+      controlled
+      min="{{ 1 }}"
+      max="{{ num_total_words }}"
+      step="{{ 5 }}"
+      slot="footer"
+      bind:change="onInputNumTestWords"
+    />
+  </wux-cell>
+</van-dialog>

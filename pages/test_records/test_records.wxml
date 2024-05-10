@@ -1,6 +1,6 @@
 <!--pages/test_records/test_records.wxml-->
 <view class="container">
-  <van-button class="go-rating" type="info" wx:if="{{wrongRecordItems.length == 0 && correctRecordItems.length == 0 && not_rated.length > 0 && type == '词义填写'}}" bind:click="go_rating" round>去评分！</van-button>
+  <van-button class="go-rating" type="info" wx:if="{{wrongRecordItems.length == 0 && correctRecordItems.length == 0 && not_rated.length > 0 && type == '词义填写'}}" bind:click="showAdd" round>去评分！</van-button>
   <van-cell-group title="错题记录 ({{wrongRecordItems.length}})" wx:if="{{wrongRecordItems.length > 0}}">
     <view wx:for="{{wrongRecordItems}}" wx:key="row{{index}}" >
       <van-cell data-recordId="{{item.id}}" title="{{item.english}}" is-link value="{{item.translation}}" bind:tap="navigateToDetails" />
@@ -19,7 +19,7 @@
     </view>
   </van-cell-group>
   <view class="bottom">
-    <van-button type="info" bind:click="go_rating" style="margin-left: 0.5cm; flex-grow: 1;" wx:if="{{(wrongRecordItems.length > 0 || correctRecordItems.length > 0) && type == '词义填写'}}" round>重新评分</van-button>
+    <van-button type="info" bind:click="showAdd" style="margin-left: 0.5cm; flex-grow: 1;" wx:if="{{(wrongRecordItems.length > 0 || correctRecordItems.length > 0) && type == '词义填写'}}" round>重新评分</van-button>
     <van-button type="danger" bind:click="delete" style="margin-right: 0.5cm;" wx:if="{{wrongRecordItems.length > 0 || correctRecordItems.length > 0 || not_rated.length > 0}}" round>删除结果</van-button>
   </view>
 </view>
